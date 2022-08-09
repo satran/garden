@@ -8,6 +8,8 @@ Here you will find my personal notes, thoughts, and drafts of long forms. This i
 
 I can't promise everything here is going to be well edited, but I can promise that items without the #Draft tag will be well thought through.
 
+---
+
 Here are some of my recent articles:
 
 {{sh `
