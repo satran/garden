@@ -1,5 +1,0 @@
-These are the books that I've read
-
-
-{{sh `cat $FUSE/tags/books | awk '{print "- <a href=\"/" $0 "\">" $0 "</a>"}'`}}
-

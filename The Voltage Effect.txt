@@ -1,7 +1,7 @@
 ---
 Title: The Voltage Effect
 Author: [[John A List]]
-Tags: #books #notes
+Tags: #Books
 ISBN: 978 0 593 44352 1
 Read: 2022
 ---

@@ -1,7 +1,7 @@
 ---
 Title: Notes On A Nervous Planet
 Author: [[Matt Haig]]
-Tags: #books #notes
+Tags: #Books
 ISBN: 978 1 78689 269 0
 Read: 2022
 Summary: This one talks about how much the digital medium has influenced us.

@@ -1,5 +1,7 @@
+---
+Tags: #Draft
+---
 iOS Development 
-#draft
 
 - Attributed Strings for markdown: https://developer.apple.com/documentation/foundation/attributedstring
 - Apple development guide [scrumdinger](https://developer.apple.com/tutorials/app-dev-training)

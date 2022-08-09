@@ -1,7 +1,7 @@
 ---
 Title: What I Talk About When I talk About Running
 Author: [[Haruki Murakami]]
-Tags: #books #notes
+Tags: #Books
 ISBN: 978 0 307 47339 4
 Read: 2022
 Created: 2022/06/20

@@ -1,7 +1,7 @@
 ---
 Title: Remote
 Author: [[Jason Fried]] [[David Heinemeier Hansson]]
-Tags: #books #notes
+Tags: #Books
 ISBN: 978 0 09 1954467 3
 Read: 2022
 ---

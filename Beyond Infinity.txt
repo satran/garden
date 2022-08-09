@@ -1,6 +1,6 @@
 ---
 Title: Beyond Infinity
-Tags: books notes
+Tags: #Books
 Started: 2022-04-15
 Author: Eugenia Cheng
 Summary: the usefulness of mathematics isn't about whether you need it to 'get by' in life or not. It's about how mathematical thinking and mathematical investigation sheds light on our thought processes. It's about taking a step back from something to get a better overview. Flying higher up in the sky enables us to travel further and faster.

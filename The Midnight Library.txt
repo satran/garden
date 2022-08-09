@@ -1,7 +1,7 @@
 ---
 Title: The Midnight Library
 Author: [[Matt Haig]]
-Tags: #books #notes
+Tags: #Books
 ISBN: 978 1 78689 273 7
 Read: 2022
 ---

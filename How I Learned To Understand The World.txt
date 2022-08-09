@@ -1,7 +1,7 @@
 ---
 Title: How I Learned To Understand The World
 Author: [[Hans Rosling]]
-Tags: #books #notes
+Tags: #Books
 ISBN: 978 1 529 32778 6
 Read: 2022
 ---

@@ -1,7 +1,7 @@
 ---
 Title: How Google Works
 Author: [[Eric Schmidt]] [[Jonathan Rosenberg]]
-Tags: #books #notes
+Tags: #Books
 ISBN: 978 1 444 79249 2
 Read: 2019, 2022
 ---
