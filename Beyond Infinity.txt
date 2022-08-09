@@ -1,0 +1,18 @@
+---
+Title: Beyond Infinity
+Tags: books notes
+Started: 2022-04-15
+Author: Eugenia Cheng
+Summary: the usefulness of mathematics isn't about whether you need it to 'get by' in life or not. It's about how mathematical thinking and mathematical investigation sheds light on our thought processes. It's about taking a step back from something to get a better overview. Flying higher up in the sky enables us to travel further and faster.
+---
+
+# Quotes
+1. Loops make infinitely long journeys possible in a finite space (p.3)
+2. When children ask innocuous math questions that seem impossible to answer, this can be intimidating for adults, who feel that they are supposed to have all the answers. (p. 7)
+3. An important aspect of learning is being able to ask new questions; this is more important than being able to state new fact - [[Christopher Danielson]] (p. 7)
+4. I don't have a travel bug for the physical world as much as some people do, but I do have the curiosity bug, the counterpart for the abstract world. (p. 9)
+5. Mathematics suffers a strange burden of being required to be useful. This is not a burden placed on poetry or music or football. (p. 11)
+6. ... the usefulness of mathematics isn't about whether you need it to 'get by' in life or not. It's about how mathematical thinking and mathematical investigation sheds light on our thought processes. It's about taking a step back from something to get a better overview. Flying higher up in the sky enables us to travel further and faster. (p. 11)
+
+# Recommendations
+- [[Journey to the Center of the Earth]]

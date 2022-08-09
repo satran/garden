@@ -1,0 +1,2 @@
+
+{{sh `cat $FUSE/tags/_all | awk '{print "- <a href=\"" $0 "\">" $0 "</a>"}'`}}

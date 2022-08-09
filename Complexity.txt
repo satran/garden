@@ -1,0 +1,3 @@
+# Complexity
+
+My dislike for banking stems from my lack of understanding rather than the complexity of the system. As [[Dan Norman]] in [[Living with Complexity]] says "... things we understand are no longer complicated, no longer confusing".

@@ -1,0 +1,4 @@
+Engineering Management
+
+Write about how to engineer management and how to look into management as an engineering problem.
+

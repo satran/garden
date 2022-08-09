@@ -1,0 +1,56 @@
+---
+Title: The Voltage Effect
+Author: [[John A List]]
+Tags: #books #notes
+ISBN: 978 0 593 44352 1
+Read: 2022
+---
+#book #note
+
+The book talks about how to [[Scale]] things. The author was the Chief Economist at both Uber and Lyft. He is a professor of economics. I picked up this book listening to either Freakonomics or People I mostly admire podcast. 
+
+> "To [[Scale]]", has become a popular but imprecise term, too often used as a vague description or ambition when what we need is a clearly defined method with universal benchmarks. (p.9)
+
+
+# Chapter 1
+In this chapter he talks mostly about [[False Positive]]s that cause ideas to fail at scale. If an expeiment worked for a sample set it doesn't necessarily mean that this would scale in the population. There are multiple factors that cause this, mostly he talks about false postives. 
+
+> At the most basic level, a [[False Positive]] occurs when you interpret some piece of evidence or data as proff that something is true when in fact it isn't. 
+
+
+## Confirmation Bias
+
+> In the most basic sense, [[Confirmation Bias]] prevents us from seeing possibilities that might challenge our assumptions, and it leads us to gather, interpret, and recall information in a way that confirms to our previously existing beliefs. (p. 28)
+
+> Because we have limited brainpower to process all of this, we use mental shortcuts to make quick, often gut-level decisions. (p. 28)
+
+
+I have heard this argument several times that we are so tied up with our prehistoric brain. We evolved from hunters and needed to act quickly to survive. How long in the evolutionary scale do we need to move away from this?
+
+An example of [[Confirmation Bias]] is by the British psychologist [[Peter Wason]].
+
+
+> He gave subjects three numbers and asked them to come up with a rule that applied to the selection of those numbers. Given the sequence 2, 4, 6, for example, they typically formed a hypothesis that the rule was even numbers. Then the participants would present other sequences of even numbers, and researchers would tell them whether or not those numbers confirmed to the rule. Through this process, participants were tasked with determininig whether their hypothesis was correct. After several correct tries the participants believed that they had discovered the rule. But in fact they hadn't because the rule was much simpler: increasing numbers.  (p.29)
+
+  
+The most interesting aspect of this study is that almost all subjects only tested number sequences that conformed to their personal hypothesis, and very few tried a number sequence that might disprove their hypothesis. 
+
+We want to think fast and come up to the solution that we forget a lot of common sense. 
+  
+## [[Bandwagon Effect]]
+Here the example given is of the experiement where a room of participants were shown 3 lines of varying lengths, in which one looked obviously longer. Each person was asked to state out loud what which line was the longest. There were participants in the group that were actors/confederates. They started fist and identified the wrong line. More than a third of the participants went along with the incorrect answer. 
+
+Sometimes I think the way we do interview debriefs at Solarisbank has the problem of the bandwagon effect. 
+
+
+> The leader, who usually is the most passionate, strong willed person present, tends to talk first and loudest, setting the agenda, dominating the subsequent conversation, and influencing everyone else's opinions and decisions, either implicitly or explicitly. (p. 31)
+
+> ... when bad ideas are endorsed by influential people and institutions, they can be contagious. (p. 32)
+
+
+# Recommendations
+On Cognitive biases:
+- Paper: Judgment Under Uncertainty: Heuristics and Biases - Daniel Kahneman & Amos Tversky
+- Thinking, Fast and Slow - Kahneman
+- Predictably Irrational - Dan Ariely
+- The Undoing Project - Michael Lewis

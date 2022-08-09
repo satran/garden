@@ -1,0 +1,7 @@
+iOS Development 
+#draft
+
+- Attributed Strings for markdown: https://developer.apple.com/documentation/foundation/attributedstring
+- Apple development guide [scrumdinger](https://developer.apple.com/tutorials/app-dev-training)
+- File/document access https://developer.apple.com/documentation/uikit/view_controllers/adding_a_document_browser_to_your_app
+- Rich text component: https://rajdeep.github.io/proton

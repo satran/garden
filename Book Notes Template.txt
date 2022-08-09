@@ -1,0 +1,11 @@
+#template
+
+```
+---
+Title: 
+Author: 
+Tags: #books #notes
+ISBN: 
+Read: 
+---
+```
