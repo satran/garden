@@ -1,0 +1,5 @@
+Longforms on some topics that I find interesting:
+
+
+{{sh `cat $FUSE/tags/Books | awk '{print "- <a href=\"/" $0 "\">" $0 "</a>"}'`}}
+
