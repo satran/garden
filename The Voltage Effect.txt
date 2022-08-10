@@ -4,6 +4,7 @@ Author: [[John A List]]
 Tags: #Books
 ISBN: 978 0 593 44352 1
 Read: 2022
+Created: 2022/06/01
 ---
 #book #note
 

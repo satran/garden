@@ -1,1 +1,2 @@
 Where will this be stored?
+This {{margin "book" "1" "this is just a regular note with [[The Voltage Effect]] as a link."}} is what I exactly want.
