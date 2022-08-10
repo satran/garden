@@ -8,6 +8,8 @@ Here you will find my personal notes, thoughts, and drafts of long forms. This i
 
 I can't promise everything here is going to be well edited, but I can promise that items without the #Draft tag will be well thought through.
 
+---
+
 {{sh `
 ls *.txt | grep -v '^_' | sed 's/\.txt$//' | awk '{printf "<li><a href=\"%s\">%s</a></li>", $0, $0}'
 `}}
