@@ -11,3 +11,4 @@ I can't promise everything here is going to be well edited, but I can promise th
 {{sh `
 ls *.txt | grep -v '^_' | sed 's/\.txt$//' | awk '{printf "<li><a href=\"%s\">%s</a></li>", $0, $0}'
 `}}
+\n---
