@@ -1,4 +1,5 @@
 Home: /
+Blog: /Blog
 Tags: /Tags
-About Me: /About
+Books: /Books
 Twitter: https://twitter.com/sat_ran
