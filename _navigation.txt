@@ -1,4 +1,3 @@
-Home: /
 Blog: /Blog
 Tags: /Tags
 Books: /Books
