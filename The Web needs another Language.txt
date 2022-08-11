@@ -29,7 +29,7 @@ I recently had a conversation with a colleague about JavaScript (I cannot bother
 
 > There are only two kinds of languages: the ones people complain about and the ones nobody uses.
 
-JavaScript has its {{margin "good parts" "2" "http://www.amazon.com/gp/product/0596517742/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0596517742&linkCode=as2&tag=satyaranje-20&linkId=32DY54ZOMHGLAA2P"}} even though it was {{margin "created in 10 days" "3" "https://www.w3.org/community/webed/wiki/A_Short_History_of_JavaScript"}}.
+JavaScript has its {{margin "good parts" "2" "[JavaScript: The Good Parts](http://www.amazon.com/gp/product/0596517742/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0596517742&linkCode=as2&tag=satyaranje-20&linkId=32DY54ZOMHGLAA2P)"}} even though it was {{margin "created in 10 days" "3" "https://www.w3.org/community/webed/wiki/A_Short_History_of_JavaScript"}}.
 
 **Achilles**: So why do I hear you complain about it all the time. Just imagine what has happened in the past few years. I can program in an editor that was created using JavaScript with which I use to create wonderful single page client side applications which in turn communicates with a server written completely in JavaScript which communicates with the database server again with JavaScript. It is all JavaScript. The only thing I feel sad is that we have not created an operating system with JavaScript yet.
 
@@ -44,14 +44,4 @@ I have no problem with people looking at JavaScript as a hammer. I do not care a
 The web ought to be more open, providing options where one can create code with the parenthesis of Lisp or cryptic Perl or the beautiful Pythonic spaces or may be even obfuscated C. I want to have the freedom to write in any language of choice. But we are not there, yet.
 
 I don't have an answer. Maybe WebAssembly is the answer. But for now I will try to hate JavaScript with a vengeance :)
-
----
-
-[*] Yes there is clojurescript and a few others which are still in the nascent stage - sadly they compile to JavaScript!
-
-[1]: https://en.wikipedia.org/wiki/G%C3%B6del,_Escher,_Bach
-
-[2]: [JavaScript: The Good Parts](http://www.amazon.com/gp/product/0596517742/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0596517742&linkCode=as2&tag=satyaranje-20&linkId=32DY54ZOMHGLAA2P)
-
-[3]: https://www.w3.org/community/webed/wiki/A_Short_History_of_JavaScript
 
