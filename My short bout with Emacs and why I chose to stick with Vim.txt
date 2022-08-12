@@ -4,6 +4,7 @@ Created: 2012/06/08
 Tags: Blog
 Alias: b/short-bout-with-emacs
 ---
+
 This is not to kindle the flame wars of Emacs and Vim. This is just my experience with Emacs.
 
 Ever since I came across Linux and UNIX I had been told about two great editors: Emacs and vi(I'm going to use vi for Vim throughout the article.) Toying around Linux I came across vi more frequently. Many articles had me typing commands in bash like 
