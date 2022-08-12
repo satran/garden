@@ -1,7 +1,7 @@
 ---
-Title: Paper Summary - An Agile Approach to a Legacy System
+Title: An Agile Approach to a Legacy System
 Created: 2019/09/10
-Tags: Blog
+Tags: Papers
 Alias: b/paper_summary_an_agile_approach_to_legacy_system
 ---
 
