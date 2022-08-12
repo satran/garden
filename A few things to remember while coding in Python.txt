@@ -31,26 +31,26 @@ Give me a function that takes a list of numbers and returns only the even ones, 
 
 - Swaping two variables:
 
-        a, b = b, a
+		a, b = b, a
 
 - The step argument in slice operators. For example:
 
-        a = [1,2,3,4,5]
-            >> a[::2]  # iterate over the whole list in 2-increments
-        [1,3,5]
+		>> a = [1,2,3,4,5]
+		>> a[::2]  # iterate over the whole list in 2-increments
+		[1,3,5]
         
     The special case `x[::-1]` is a useful idiom for 'x reversed'.
 
-            >> a[::-1]
-        [5,4,3,2,1]
+		>> a[::-1]
+		[5,4,3,2,1]
 
 UPDATE: Do keep in mind `x.reverse()` reverses the list in place and slices gives you the ability to do this:
 
-            >> x[::-1]
-        [5, 4, 3, 2, 1]
-
-            >> x[::-2]
-        [5, 3, 1]
+		>> x[::-1]
+		[5, 4, 3, 2, 1]
+		
+		>> x[::-2]
+		[5, 3, 1]
 
 ## Don't use mutables as defaults
 
@@ -149,11 +149,11 @@ Rather go for the `collection` type `defaultdict`
     defaultdict	    # dict subclass that calls a factory function to supply missing values	
 
 UPDATE: As noted by a few in Hacker News I could have used `Counter` instead of `defaultdict`.
-
-        >> from collections import Counter
-        >> c = Counter("abracadabra")
-        >> c['a']
-    5
+		
+		>> from collections import Counter
+		>> c = Counter("abracadabra")
+		>> c['a']
+		5
     
 
 ## When creating classes Python's [magic methods](http://www.rafekettler.com/magicmethods.html)
@@ -198,18 +198,18 @@ It's designed to mean at this point, insert as many full slices (:) to extend th
 
 Example:
 
-        >> from numpy import arange
-        >> a = arange(16).reshape(2,2,2,2)
+		>> from numpy import arange
+		>> a = arange(16).reshape(2,2,2,2)
 
 Now, you have a 4-dimensional matrix of order 2x2x2x2. To select all first elements in the 4th dimension, you can use the ellipsis notation
 
-        >> a[..., 0].flatten()
-    array([ 0,  2,  4,  6,  8, 10, 12, 14])
+		>> a[..., 0].flatten()
+		array([ 0,  2,  4,  6,  8, 10, 12, 14])
 
 which is equivalent to
 
-        >> a[:,:,:,0].flatten()
-    array([ 0,  2,  4,  6,  8, 10, 12, 14])
+		>> a[:,:,:,0].flatten()
+		array([ 0,  2,  4,  6,  8, 10, 12, 14])
 
 
 **Previous suggestion.**
@@ -217,14 +217,14 @@ which is equivalent to
 When creating a class you can use `__getitem__` to make you class' object work like a dictionary. Take this class as an example:
 
 
-    class MyClass(object):
-        def __init__(self, a, b, c, d):
-            self.a, self.b, self.c, self.d = a, b, c, d
-
-        def __getitem__(self, item):
-            return getattr(self, item)
-
-    x = MyClass(10, 12, 22, 14)
+		class MyClass(object):
+		    def __init__(self, a, b, c, d):
+		        self.a, self.b, self.c, self.d = a, b, c, d
+		
+		    def __getitem__(self, item):
+		        return getattr(self, item)
+		
+		x = MyClass(10, 12, 22, 14)
 
 Because of `__getitem__` you will be able to get the value of `a` in the object `x` by `x['a']`. This is probably a known fact. 
 
@@ -238,7 +238,7 @@ This object is used to extend the Python slicing.([http://docs.python.org/librar
 
 We can use `x[...]` to get a list containing all the items.
 
-        >> x = MyClass(11, 34, 23, 12)
-        >> x[...]
-    [11, 34, 23, 12]
+		>> x = MyClass(11, 34, 23, 12)
+		>> x[...]
+		[11, 34, 23, 12]
 
