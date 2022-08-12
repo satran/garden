@@ -46,8 +46,3 @@ The web ought to be more open, providing options where one can create code with 
 
 I don't have an answer. Maybe WebAssembly is the answer. But for now I will try to hate JavaScript with a vengeance :)
 
----
-
-[*] 
-
-
