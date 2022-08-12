@@ -18,11 +18,11 @@ UPDATE: There has been much discussion in [Hacker News](http://news.ycombinator.
     Give me a function that takes a list of numbers and returns only the
         even ones, divided by two.
         
-        #-----------------------------------------------------------------------
+        # -----------------------------------------------------------------------
         
         halve_evens_only = lambda nums: map(lambda i: i/2, filter(lambda i: not i%2, nums))
         
-        #-----------------------------------------------------------------------
+        # -----------------------------------------------------------------------
         
         def halve_evens_only(nums):
             return [i/2 for i in nums if not i % 2]
