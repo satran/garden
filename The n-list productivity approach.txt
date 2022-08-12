@@ -2,6 +2,7 @@
 Title: The n-list productivity approach
 Created: 2021/03/19
 Tags: Blog
+Alias: b/the_n_list_approach
 ---
 
 There are numerous methods available for getting things done. With simple methods as just a single sheet of todos to more complicated methods such as the Getting Things Done approach. And there is a plethora of tools out there which will provide you with different functionality to keep track of your tasks. 

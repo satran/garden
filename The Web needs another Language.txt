@@ -2,6 +2,7 @@
 Title: The Web needs another Language
 Created: 2015/09/08
 Tags: Blog
+Alias: b/the-web-needs-another-language
 ---
 
 I recently had a conversation with a colleague about JavaScript (I cannot bother to call it ECMAScript). He was praising the language and how nodejs is brilliant with the whole Isomorphic pattern. This got me thinking why I despise JavaScript. Was it prejudice? Was it the "Java" in the name? There was something about it that irked the programmer in me. I needed an answer. To this I decided to take {{margin "Hofstadter's approach" "1" "https://en.wikipedia.org/wiki/G%C3%B6del,_Escher,_Bach"}}.

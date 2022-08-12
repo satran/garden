@@ -2,6 +2,7 @@
 Title: Understanding and Using C Pointers
 Created: 2013/06/22
 Tags: Books
+Alias: b/understanding_and_using_c_pointers
 ---
 
 I started developing an implementation of BK Trees in C recently. I had, many a time, played around with C but never done anything substantially big that would be deployed in some server. Now the time had come as the Python implementation was just too slow. So I picked up the good old K&R and revised the bits that was rusting in the corners of my brain. Now I also picked up 21st Century C. It was probably the right way to go and in a few weeks I had picked up almost all that I needed to work on the program.
