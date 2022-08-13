@@ -1,4 +1,6 @@
-Banking
+---
+Tags: Draft
+---
 
 - https://gendal.me/2013/11/24/a-simple-explanation-of-how-money-moves-around-the-banking-system/
 - https://bam.kalzumeus.com/archive/

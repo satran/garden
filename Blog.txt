@@ -1,4 +1,4 @@
-Longforms on some topics that I find interesting:
+Long forms on topics that I find interesting:
 
 
 {{sh `cat $FUSE/tags/Blog | awk '{print "- <a href=\"/" $0 "\">" $0 "</a>"}'`}}

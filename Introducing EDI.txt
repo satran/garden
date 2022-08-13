@@ -5,7 +5,7 @@ Tags: Blog
 Alias: b/introducing-edi
 ---
 
-![Screenshot EDI](/s/images/others/edi.png "Introducing EDI")
+![Screenshot EDI](/edi.png "Introducing EDI")
 
 I've had this thought from the time I tried to settle down on one editor. There was always something that did not quite work for me. Vim worked most of the times and when it didn't I tried to jump ships to Emacs. I gave Sublime Text, Textmate, and a number of others a fair chance. Last I came across Acme. It was brilliant in many ways and terrible in others. I wanted the plumbing and ability to execute commands on the go and have better keybindings and editor features. So I decided to write my own. So here is EDI (pronounced as Eddy).
 

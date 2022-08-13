@@ -6,7 +6,6 @@ ISBN: 978 0 593 44352 1
 Read: 2022
 Created: 2022/06/01
 ---
-#book #note
 
 The book talks about how to [[Scale]] things. The author was the Chief Economist at both Uber and Lyft. He is a professor of economics. I picked up this book listening to either Freakonomics or People I mostly admire podcast. 
 

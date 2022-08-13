@@ -1,11 +1,9 @@
-#template
-
-```
 ---
 Title: 
 Author: 
 Tags: #Books
 ISBN: 
 Read: 
+Created:
 ---
-```
+

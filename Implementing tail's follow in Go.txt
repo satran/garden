@@ -5,7 +5,7 @@ Tags: Blog
 Alias: b/Implementing_tails_follow_in_go
 ---
 
-`tail` is a command most of us are familiar with. And I would assume you are also familiar with the `-f` option that it exposes. And to those that aren't familiar it prints out the last few lines of a file. Recently working on a project I wondered what I need to do to implement this on my own. The thought comes from reading Feynman's book[1]:
+`tail` is a command most of us are familiar with. And I would assume you are also familiar with the `-f` option that it exposes. And to those that aren't familiar it prints out the last few lines of a file. Recently working on a project I wondered what I need to do to implement this on my own. The thought comes from reading {{margin "Feynman's book" "1" "[Feynman Lectures on Computation](http://amzn.to/2AIWVuX)"}}
 
 > No doubt you know how to do it; but when you play with this sort of problem as a kid, and you haven't been shown the answer... it's fun trying to figure out how to do it. Then, as you go into adulthood, you develop a certain confidence that you can discover things; but if they've already been discovered, that you shouldn't bother you at all. What one fool can do, so can another, and the fact that some other fool beat you to it shouldn't disturb you: you should get a kick out of having discovered something.
 
@@ -116,6 +116,4 @@ func waitForChange(w *fsnotify.Watcher) error {
 ```
 
 I hope the code explains better than the text I have written. I have omitted several cases where the code could fail for brevity. For a sound implementation of the functionality I would have to dig deeper. But this was good enough for me to quence the thirst of knowing how it works. I hope it did the same for you too.
-
-[1] [Feynman Lectures on Computation](http://amzn.to/2AIWVuX)
 

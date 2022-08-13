@@ -7,12 +7,13 @@ Alias: b/configuring-a-git-server
 
 There are many ways to set up a Git server. In this article I am going to show you how you can do it using the SSH protocol. First I am assuming you have a UNIX or GNU/Linux machine with you. I am not very sure if this works well on windows, I am assuming it would. 
 
-####**Installing basic packages on the server**
+# Installing basic packages on the server
 You must have ssh installed in your machine and the daemon must be running. On [Fedora](http://fedoraproject.org) it comes in by default, while on [Ubuntu](http://ubuntu.com) you have to install the `openssh-server` package. On a Mac the service is disabled by default. Go to System Preferences -> Sharing and enable Remote Login. 
 
 Now that you have `sshd` enabled we can proceed to setting up the git server. You must have git installed in the machine, get the instructions for your machine [here](http://git-scm.com/download). For the rest of the document I am going to call the server `r2d2` and the client machine `gandalf`. 
-<!-- more -->
-####**Creating the Repository**
+
+
+# Creating the Repository
 It is best to have a dedicated user for the git repository. I have created a user called `git` in `r2d2` and have placed my repositories inside the directory `~git/repositories`. Either you can copy an existing repository or create a new one. I will show you both. To create a new repository `hello_world` run this command in the repository directory.
 
     git --init bare hello_world.git
@@ -23,7 +24,7 @@ To copy an existing repository, assuming the repository is in /var/ftp/hello_wor
 
 Now that you have the repository create let me show you how to access it.
 
-####**Accessing the Repository**
+# Accessing the Repository
 On the client `gandalf` I need to create a ssh key pair. My user on `gandalf` is `satyajit`. To create the ssh key pair I run this command:
 
     ssh-keygen
@@ -84,7 +85,7 @@ Now if you try accessing ssh using the user `git` you will get a response simila
     fatal: What do you think I am? A shell?
     Connection to gitserver closed.
 
-####**Notes**
+# Notes
 Please keep in mind this is definitely not the best method to use in a public network. It is suitable for a small team in a local network. When you have many users copying and managing all the public keys will become a task by itself. Stay tuned for another article on how to do that.
 
 

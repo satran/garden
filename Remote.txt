@@ -7,12 +7,13 @@ Read: 2022
 ---
 
 It was a quick and good read. Keeping in mind that this was published in 2013, I’m impressed that a lot of recommendations still hold today. I’m not a fan of management books in general, mainly because of the anecdotal nature. This is anecdotal and it is based on their experiences running a rather small team but the lessons are valuable. There is a section about Dealing With Excuses that would be handy
+
 Few things I found interesting:
-- If you are dealing with trust issues, it means we have made a poor hiring decision.
+- If you are dealing with trust issues, it means you have made a poor hiring decision.
 - Pay the same across location
 - Minimise M&Ms (Managers and Meetings)
 - Say what you have done for the week, (instead of what you are going to do during the day like us)
 
-There was a part about check-ins that I thought was good. Have a weekly check in about how the weekend went. It is an automate thread, where people can post photos of what they did outside work. This helps people connect apart from work. May something we can experiment in EMs channel.
+There was a part about check-ins that I thought was good. Have a weekly check in about how the weekend went. It is an automate thread, where people can post photos of what they did outside work. This helps people connect apart from work
 
-[[The Voltage Effect]]
+
