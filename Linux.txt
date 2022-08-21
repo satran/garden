@@ -1,0 +1,9 @@
+---
+Title: Linux
+Created: 2022/08/21
+Tags: Draft
+---
+
+If I remember correctly, I got introduced to Linux in 2003. I vaguely remember installing and crashing the home computer. I don't think anyone else bothered too much about it; I was constantly trying out something with the home computer. With little guidance and no internet I ditched the effort and went back to Windows. Much later in 2006 I picked it up again, this time influenced by {{margin "How To Become A Hacker" "1" "[How To Become A Hacker](http://www.catb.org/%7Eesr/faqs/hacker-howto.html) by Eric Raymond". Something about the openness and the hackability lured me over. 
+
+Years have passed on and now I have moved out of developing code for a living. Although in the software industry, I now manage people. This took me away from Linux for my day to day work. But my personal laptop still runs Linux. 
