@@ -2,7 +2,7 @@
 Title: A few things to remember while coding in Python.
 Created: 2012/05/17
 Tags: Blog
-Alias: b/python-a-few-things-to-remember
+Alias: b/python-a-few-things-to-remember /2012/05/17/python-a-few-things-to-remember.html
 ---
 
 UPDATE: There has been much discussion in [Hacker News](http://news.ycombinator.com/item?id=3996708) about this article. A few corrections from it.
