@@ -1,0 +1,116 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Satran&#39;s Digital Garden</title>
+    <link rel="shortcut icon" href="/favicon.png" />
+    <link rel="stylesheet" href="/base.css"/>
+  </head>
+  <body>
+    <nav class="main">
+      <li class="site-title"><a href="/">Satran&#39;s Digital Garden</a></li>
+      <li><a href="/Blog">Blog</a></li><li><a href="/Tags">Tags</a></li><li><a href="/Books">Books</a></li><li><a href="https://twitter.com/sat_ran">Twitter</a></li>
+    </nav>
+
+<div class="wrapper">
+  <article>
+    <section class="content">
+      
+      <h1 class="title">Go best practises</h1>
+      
+      <p>I have been building the back-end for <a href="http://studiomarch.com/endless/">Endless</a>, a product we make at Studio March, primarily in Go. There have been a few pleasant surprises that the language provides. Here I try to explain an opinionated best practises while coding in Go.</p>
+<h1>Use the standard library.</h1>
+<p>Always see if there is something in the standard library that fits your need before looking else where. In most cases the standard library is just enough.</p>
+<h2>The flag package for most configurations.</h2>
+<p>The <code>flag</code> package is  seen as parsing arguments from the command line. It can also be used to store configurations your code might need. It also helps serve documentation for all the configurations.</p>
+<pre><code>var port int
+flag.IntVar(&amp;port, &quot;port&quot;, 8000, &quot;Specifies the port the server listens to.&quot;)
+</code></pre>
+<p>This can either be used as command line arguments or in places which needs default values.</p>
+<h2>The database/sql as a substitute for the many ORMs</h2>
+<p>I searched for days to stick to an ORM but finally decided to stick with the vanilla <code>database/sql</code> package. Many might think this takes us back a step but its simplicity makes up for any drawback. ORMs generally take the least common set of features a database provides. For example you cannot take advantages that Postgres give you with Hstore or Array data types. With the <code>database/sql</code> you can.</p>
+<h2>I use the net/http</h2>
+<p>For my needs the <code>net/http</code> fits  well for the few end points of the API. Sometimes I use the <a href="http://gorillatoolkit.org/">Gorilla tool kit</a> when the <code>http</code> package is not enough. More than a full fledge framework use what you need from the <code>net/http</code> package or the toolkit.</p>
+<h2>others</h2>
+<p>The <code>log</code> package does most of your logging at ease. It is also thread safe which means you can have global <code>Logger</code>s to do all your logging. Use the <code>log.Lshortfile</code> flag for debugging purposes. The <code>testing</code> suite with the <code>go test</code> command is enough for most test cases.</p>
+<h1>Use the tools provided with go</h1>
+<p>Go provides tools like <code>gofmt</code> <code>go test</code> which ease up your development, use them effectively.</p>
+<h2>gofmt</h2>
+<p>If you have programmed with Go before you will know that the language designers decided to put a full stop in styling discussions with the <code>gofmt</code> tool. The tool decides how many tabs, spaces between parenthesis and all the non-essential discussions. But you might have missed the wonderful option which can be used to re-factor your code. The <code>-r</code> option just does that.</p>
+<pre><code>gofmt -r 'pattern -&gt; replacement' &lt;files&gt;
+</code></pre>
+<p>Thus if you want to change a struct Program to Process you would</p>
+<pre><code>gofmt -r 'Program -&gt; Process' -w .
+</code></pre>
+<p>If you just want to list the files that contain the changes use a <code>-l</code>. Use <code>godoc gofmt</code> to learn more.</p>
+<h2>go test</h2>
+<p>The test suite of go has a lot of gems hidden. I use the <code>-test.run=TestFunction</code> many times. The tool also provides coverage and benchmark analysis. The several tools go provides are useful and enough for most cases. Do read the documentation of these tools. I'm sure you will find some that surprise you.</p>
+<h1>Organize your Go code</h1>
+<p>The Go language internally uses a format which we can follow nearly. Go files that expose a <code>main</code> package, that is one that builds an executable, reside inside <code>cmd</code> folder and libraries inside <code>pkg</code> folder. We can use the <code>cmd</code> folder to store executables and the root folder(we don't need to use the <code>pkg</code> folder to simplify import paths). So if we were creating a web server we could do something like this:</p>
+<pre><code>cmd/
+    endless/
+            main.go
+            api.go
+            ...
+models.go
+db.go
+...
+</code></pre>
+<p>This way in our endless/main.go we can use an import path like <code>github.com/endless/models</code> etc.</p>
+<h1>And a few others</h1>
+<h2>Use environment variables for sensitive information</h2>
+<p>Use the <code>os.Getenv(&quot;VARIABLE_NAME&quot;)</code> to set passwords and other sensitive in your program. This way you avoid pushing passwords in your versioning system.</p>
+<h2>Use your $HOME folder for $GOPATH</h2>
+<p>This is just convenience. Setting it will automatically put binaries in <code>$HOME/bin</code> and navigating through code can be easier by just following <code>$HOME/src</code>.</p>
+<h2>Naming conventions</h2>
+<p>Follow standards in <a href="https://golang.org/doc/effective_go.html#names">Effective Go</a> for naming conventions. Try to make your packages read like <code>users.New</code> or <code>sessions.DB</code>.</p>
+<h2>Keep it simple</h2>
+<p>The beauty of Go is its simplicity, so try to do the same with your code. Avoid exposing too many variables/structs/functions. Make your API small and simple. This makes it easier to maintain your code.</p>
+<p>As I keep coding in Go I learn something new every day. This is definitely not an exhaustive list and some of it is opinionated, take it with a pinch of salt. One good advice is to try the idiomatic way of Go. Almost always the designers have got it right.</p>
+
+    </section>
+
+    
+    <section class="side">
+      <div class="meta">
+	
+	<p class="date">Created on Nov 23 2014</p>
+	
+	
+	<ul class="tags">
+	  
+	  <li><a href="/Blog">Blog</a></li>
+	  
+	</ul>
+	
+      </div>
+      
+
+    </section>
+    
+  </article>
+</div>
+
+<div class="footer">
+  <div class="about">
+    <nav>
+      <li><a href="/Blog">Blog</a></li><li><a href="/Tags">Tags</a></li><li><a href="/Books">Books</a></li><li><a href="https://twitter.com/sat_ran">Twitter</a></li>
+    </nav>
+    
+    <div><p>Hi, I'm Satyajit Ranjeev. I'm an Engineering Leader at Solarisbank.
+I'm <a href="https://twitter.com/sat_ran">@sat_ran</a> on Twitter. Follow me for more such content.</p>
+</div>
+    
+  </div>
+  <div class="license">
+    
+    <p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png"></a><br><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">The website's theme, articles, images and all other content are licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US">Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License</a></p>
+
+    
+  </div>
+</div>
+</body>
+</html>
+

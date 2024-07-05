@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Satran&#39;s Digital Garden</title>
+    <link rel="shortcut icon" href="/favicon.png" />
+    <link rel="stylesheet" href="/base.css"/>
+  </head>
+  <body>
+    <nav class="main">
+      <li class="site-title"><a href="/">Satran&#39;s Digital Garden</a></li>
+      <li><a href="/Blog">Blog</a></li><li><a href="/Tags">Tags</a></li><li><a href="/Books">Books</a></li><li><a href="https://twitter.com/sat_ran">Twitter</a></li>
+    </nav>
+
+<div class="wrapper">
+  <article>
+    <section class="content">
+      
+      <h1 class="title">I serve this site from RAM</h1>
+      
+      <p><strong>tl;dr</strong>: For the past few days I have been serving this site completely from RAM. No JavaScript and no third party cookies. Benchmark on the latest raspberry pi has been 3500-4500 requests/second. This is the story of how and why I did it.</p>
+<p>I have been using Github to serve my blog for quite sometime now. It was around 2012 that I did so. Github was convenient. It provided me with a simple interface to serve markdown pages. A convenient way to get a blog running.</p>
+<p>But along came HTTP2 and the need for HTTPS everywhere. Mozilla voiced out HTTPS with pomp and glory. Google started punishing HTTP only sites. Thus began my hunt for a HTTPS solution for my blog. I couldn't find out how to setup a custom domain with TLS support on GitHub pages.It may well be that I'm just lazy to search well. So I decided to search for alternatives.</p>
+<p>I looked at numerous blog providers, Wordpress, Ghost, Blogger, and several others. I also investigated the cost of running it on my own. With Letsencrypt providing free TLS certificate and cheap hosting, the most cost effective one was hosting it by myself. There is a cost to manage it but it comes with absolute flexibility. And the cost turns out to be that of a hipster coffee every month. And if I get more traffic I could skip two or three coffees a month. So the answer was clear: self hosting.</p>
+<p>Since GitHub used Jekyll for my blog my first idea was to use NGINX and serve the Jekyll generated static files. This way the effort was very minimal. But using Jekyll when I had the choice not to wasn't smart. Should I run Wordpress? It needed a database. Ghost also needs a database and it runs on JavaScript. No thanks, not for a simple text based blog. I code mostly in Go, I considered Hugo even though I may never be in the position of modifying it. As with every hobby project I thought this might be the best time to write my own static file generator.</p>
+<p>I started looking through all the articles I had written, thinking how should I go about formatting it. I realized I had very few, just 30 at the time of writing this article. And even if I did write quite a lot say a hundred or a thousand more these were just plain text files. I wondered how much of memory would it take if I just served the generated HTML from memory rather than writing it to a file. I calculated the size of both images and posts. It was just 3.1 MB. The cheapest server had 2GB of RAM. The text files and images would never need that.</p>
+<p>Thus started my short journey of writing my own blog server. With the apache benchmark tool on a RaspberryPi 4 I got a maximum of ~4500 request per second. I am yet to benchmark it with TLS and on the actual machine. But I have my high hopes. The site is very minimal, no frills, no JavaScript, and no cookies and this is the best part, I have almost complete control of the site.</p>
+<p>I have shared the code in GitHub: <a href="https://github.com/satran/blogengine">https://github.com/satran/blogengine</a>. It serves the articles written in <a href="https://github.com/satran/blog">https://github.com/satran/blog</a>. I’m not sure if this would serve anybody else. But if you are curious of serving your blog using this do let me know with a feature request or pull request.</p>
+
+    </section>
+
+    
+    <section class="side">
+      <div class="meta">
+	
+	<p class="date">Created on Oct 20 2019</p>
+	
+	
+	<ul class="tags">
+	  
+	  <li><a href="/Blog">Blog</a></li>
+	  
+	</ul>
+	
+      </div>
+      
+
+    </section>
+    
+  </article>
+</div>
+
+<div class="footer">
+  <div class="about">
+    <nav>
+      <li><a href="/Blog">Blog</a></li><li><a href="/Tags">Tags</a></li><li><a href="/Books">Books</a></li><li><a href="https://twitter.com/sat_ran">Twitter</a></li>
+    </nav>
+    
+    <div><p>Hi, I'm Satyajit Ranjeev. I'm an Engineering Leader at Solarisbank.
+I'm <a href="https://twitter.com/sat_ran">@sat_ran</a> on Twitter. Follow me for more such content.</p>
+</div>
+    
+  </div>
+  <div class="license">
+    
+    <p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png"></a><br><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">The website's theme, articles, images and all other content are licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US">Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License</a></p>
+
+    
+  </div>
+</div>
+</body>
+</html>
+

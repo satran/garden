@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Satran&#39;s Digital Garden</title>
+    <link rel="shortcut icon" href="/favicon.png" />
+    <link rel="stylesheet" href="/base.css"/>
+  </head>
+  <body>
+    <nav class="main">
+      <li class="site-title"><a href="/">Satran&#39;s Digital Garden</a></li>
+      <li><a href="/Blog">Blog</a></li><li><a href="/Tags">Tags</a></li><li><a href="/Books">Books</a></li><li><a href="https://twitter.com/sat_ran">Twitter</a></li>
+    </nav>
+
+<div class="wrapper">
+  <article>
+    <section class="content">
+      
+      <h1 class="title">Ctrl &#43; a doesn&#39;t work in Bash Terminal on OS X Lion</h1>
+      
+      <p>I had this problem for a while and just ignored it for a while till it was unbearable. Well after googling a bit I came across stackoverflows answer. <code>^A</code> and <code>^E</code> are commands of bash's “emacs mode”. All I had to do was in the terminal type</p>
+<pre><code>r2d2:~ satyajit$ set -o 
+</code></pre>
+<p>and found out vi was set to on and emacs to off. I edited ~/.bashrc to add:</p>
+<pre><code>set -o emacs
+</code></pre>
+<p>And yes got the key bindings back to <code>^A</code> &amp; <code>^E</code>.</p>
+<p>This got me wondering on the <code>set - o</code> to vi mode. I am a HUGE fan of vi. I love the modal editing so why not just use it. In fact it seems better than <code>^A</code> and <code>^E</code>. Love the vi key bindings.</p>
+
+    </section>
+
+    
+    <section class="side">
+      <div class="meta">
+	
+	<p class="date">Created on Nov 13 2011</p>
+	
+	
+	<ul class="tags">
+	  
+	  <li><a href="/Blog">Blog</a></li>
+	  
+	</ul>
+	
+      </div>
+      
+
+    </section>
+    
+  </article>
+</div>
+
+<div class="footer">
+  <div class="about">
+    <nav>
+      <li><a href="/Blog">Blog</a></li><li><a href="/Tags">Tags</a></li><li><a href="/Books">Books</a></li><li><a href="https://twitter.com/sat_ran">Twitter</a></li>
+    </nav>
+    
+    <div><p>Hi, I'm Satyajit Ranjeev. I'm an Engineering Leader at Solarisbank.
+I'm <a href="https://twitter.com/sat_ran">@sat_ran</a> on Twitter. Follow me for more such content.</p>
+</div>
+    
+  </div>
+  <div class="license">
+    
+    <p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png"></a><br><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">The website's theme, articles, images and all other content are licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US">Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License</a></p>
+
+    
+  </div>
+</div>
+</body>
+</html>
+

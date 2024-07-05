@@ -1,0 +1,168 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Satran&#39;s Digital Garden</title>
+    <link rel="shortcut icon" href="/favicon.png" />
+    <link rel="stylesheet" href="/base.css"/>
+  </head>
+  <body>
+    <nav class="main">
+      <li class="site-title"><a href="/">Satran&#39;s Digital Garden</a></li>
+      <li><a href="/Blog">Blog</a></li><li><a href="/Tags">Tags</a></li><li><a href="/Books">Books</a></li><li><a href="https://twitter.com/sat_ran">Twitter</a></li>
+    </nav>
+
+<div class="wrapper">
+  <article>
+    <section class="content">
+      
+      <h1 class="title">Implementing tail&#39;s follow in Go</h1>
+      
+      <p><code>tail</code> is a command most of us are familiar with. And I would assume you are also familiar with the <code>-f</code> option that it exposes. And to those that aren't familiar it prints out the last few lines of a file. Recently working on a project I wondered what I need to do to implement this on my own. The thought comes from reading
+<span>Feynman's book<sup><label for="mn-1" class="margin-toggle">1</label></sup></span>
+<input type="checkbox" id="mn-1" class="margin-toggle"/>
+<span class="marginnote">1. <a href="http://amzn.to/2AIWVuX">Feynman Lectures on Computation</a> </span></p>
+<blockquote>
+<p>No doubt you know how to do it; but when you play with this sort of problem as a kid, and you haven't been shown the answer... it's fun trying to figure out how to do it. Then, as you go into adulthood, you develop a certain confidence that you can discover things; but if they've already been discovered, that you shouldn't bother you at all. What one fool can do, so can another, and the fact that some other fool beat you to it shouldn't disturb you: you should get a kick out of having discovered something.</p>
+</blockquote>
+<p>It probably is a trivial thing to implement. But I thought it would be a good start to a series of articles in which I write how something is implemented. So let me take you through my process of trying to figure out how to implement <code>tail -f</code> in Go.</p>
+<p>First, let's understand the problem. The tail command provides a flag which you can &quot;follow&quot; a file with. What it does is waits for any changes that are added to the end of the file and prints it for you. For simplicity I'm not going to implement tail, rather just the follow function. So we print the whole file at the beginning and then print lines as they are added.</p>
+<p>My first take of it was the very naive way of doing it. Print all the bytes in the file till we reach an <code>io.EOF</code>; let the process sleep for a second and then try reading again. Let's look at the function:</p>
+<pre><code class="language-go">func follow(file io.Reader) error {
+	r := bufio.NewReader(file)
+	for {
+		by, err := r.ReadBytes('\n')
+		if err != nil &amp;&amp; err != io.EOF{
+			return err
+		}
+		fmt.Print(string(by))
+		if err == io.EOF {
+			time.Sleep(time.Second)
+		}
+	}
+}
+
+</code></pre>
+<p>It sadly doesn't react promptly when content is written to the file. Linux provides an API to monitor file system events: the inotify AP. The man pages give you a good introduction. It provides two functions that interest us: <code>inotify_init</code> and <code>inotify_add_watch</code>. The <code>inotify_init</code> function creates an object which we would use for further interaction with the API. The <code>inotify_add_watch</code> function allows you to specify the events of files you are interested in. There are several events that the API emits, but we are concerned with the <code>IN_MODIFY</code> event, emitted when a file is modified.</p>
+<p>Since we are using Go we will have to stick to the <code>syscall</code> package. It provides wrappers for the functionality mentioned earlier: <code>syscall.InotifyInit</code> and <code>syscall.InotifyAddWatch</code>. Using syscall let's see how we can implement the follow function. I have omitted error handling for brevity, where you see an <code>_</code> variable being used it is a good place to handle the error returned.</p>
+<pre><code>func follow(filename string) error {
+	file, _ := os.Open(filename)
+	fd, _ := syscall.InotifyInit()
+	_, _ := syscall.InotifyAddWatch(fd, filename, syscall.IN_MODIFY)
+	r := bufio.NewReader(file)
+	for {
+		by, err := r.ReadBytes('\n')
+		if err != nil &amp;&amp; err != io.EOF {
+			return err
+		}
+		fmt.Print(string(by))
+		if err != io.EOF {
+			continue
+		}
+		if err = waitForChange(fd); err != nil {
+			return err
+		}
+	}
+}
+
+func waitForChange(fd int) error {
+	for {
+		var buf [syscall.SizeofInotifyEvent]byte
+		_, _ := syscall.Read(fd, buf[:])
+		if err != nil {
+			return err
+		}
+		r := bytes.NewReader(buf[:])
+		var ev = syscall.InotifyEvent{}
+		_ = binary.Read(r, binary.LittleEndian, &amp;ev)
+		if ev.Mask&amp;syscall.IN_MODIFY == syscall.IN_MODIFY {
+			return nil
+		}
+	}
+}
+</code></pre>
+<p>The <code>InotifyInit</code> function returns a file handler that can be used to read <code>sycall.InotifyEvent</code>s. Reading from this handler is a blocking operation. This allows us to react only when the event is created.</p>
+<p>If you were to handle multiple operating systems it would be better to handle this more generically. This is where the <code>fsnotify</code> package comes in. It provides an abstraction over inotify for Linux, kqueue for BSD etc. Using the fsnotify our function looks very similar to the earlier one but much simpler.</p>
+<pre><code class="language-go">func follow(filename string) error {
+	file, _ := os.Open(filename)
+	watcher, _ := fsnotify.NewWatcher()
+	defer watcher.Close()
+	_ = watcher.Add(filename)
+
+	r := bufio.NewReader(file)
+	for {
+		by, err := r.ReadBytes('\n')
+		if err != nil &amp;&amp; err != io.EOF {
+			return err
+		}
+		fmt.Print(string(by))
+		if err != io.EOF {
+			continue
+		}
+		if err = waitForChange(watcher); err != nil {
+			return err
+		}
+	}
+}
+
+func waitForChange(w *fsnotify.Watcher) error {
+	for {
+		select {
+		case event := &amp;lt;-w.Events:
+			if event.Op&amp;fsnotify.Write == fsnotify.Write {
+				return nil
+			}
+		case err := &amp;lt;-w.Errors:
+			return err
+		}
+	}
+}
+</code></pre>
+<p>I hope the code explains better than the text I have written. I have omitted several cases where the code could fail for brevity. For a sound implementation of the functionality I would have to dig deeper. But this was good enough for me to quence the thirst of knowing how it works. I hope it did the same for you too.</p>
+
+    </section>
+
+    
+    <section class="side">
+      <div class="meta">
+	
+	<p class="date">Created on Nov 15 2017</p>
+	
+	
+	<ul class="tags">
+	  
+	  <li><a href="/Blog">Blog</a></li>
+	  
+	</ul>
+	
+      </div>
+      
+
+    </section>
+    
+  </article>
+</div>
+
+<div class="footer">
+  <div class="about">
+    <nav>
+      <li><a href="/Blog">Blog</a></li><li><a href="/Tags">Tags</a></li><li><a href="/Books">Books</a></li><li><a href="https://twitter.com/sat_ran">Twitter</a></li>
+    </nav>
+    
+    <div><p>Hi, I'm Satyajit Ranjeev. I'm an Engineering Leader at Solarisbank.
+I'm <a href="https://twitter.com/sat_ran">@sat_ran</a> on Twitter. Follow me for more such content.</p>
+</div>
+    
+  </div>
+  <div class="license">
+    
+    <p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png"></a><br><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">The website's theme, articles, images and all other content are licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US">Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License</a></p>
+
+    
+  </div>
+</div>
+</body>
+</html>
+

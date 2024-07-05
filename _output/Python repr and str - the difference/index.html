@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Satran&#39;s Digital Garden</title>
+    <link rel="shortcut icon" href="/favicon.png" />
+    <link rel="stylesheet" href="/base.css"/>
+  </head>
+  <body>
+    <nav class="main">
+      <li class="site-title"><a href="/">Satran&#39;s Digital Garden</a></li>
+      <li><a href="/Blog">Blog</a></li><li><a href="/Tags">Tags</a></li><li><a href="/Books">Books</a></li><li><a href="https://twitter.com/sat_ran">Twitter</a></li>
+    </nav>
+
+<div class="wrapper">
+  <article>
+    <section class="content">
+      
+      <h1 class="title">Python repr and str - the difference</h1>
+      
+      <p>This is usually a question asked in many Python interviews: What is the difference between the <code>__str__</code> and <code>__repr__</code> methods of a Python object. The same question was asked by one of my colleagues, which got me researching.</p>
+<p>In short <code>__repr__</code> goal is to be unambigous and <code>__str__</code> is to be readable.</p>
+<p>The official Python documentation
+<span>says<sup><label for="mn-1" class="margin-toggle">1</label></sup></span>
+<input type="checkbox" id="mn-1" class="margin-toggle"/>
+<span class="marginnote">1. <a href="http://docs.python.org/reference/datamodel.html#object.__repr">http://docs.python.org/reference/datamodel.html#object.__repr</a>__ </span> <code>__repr__</code> is used to compute the &quot;official&quot; string representation of an object and
+<span><code>__str__</code><sup><label for="mn-2" class="margin-toggle">2</label></sup></span>
+<input type="checkbox" id="mn-2" class="margin-toggle"/>
+<span class="marginnote">2. <a href="http://docs.python.org/reference/datamodel.html#object.__str">http://docs.python.org/reference/datamodel.html#object.__str</a>__ </span> is used to compute the “informal” string representation of an object. The <code>print</code> statement and <code>str()</code> built-in function uses <code>__str__</code> to display the string representation of the object while the <code>repr()</code> built-in function uses <code>__repr__</code> to display the object. Using this definition let us take an example to understand what the two methods actually do.</p>
+<p>Lets create a datetime object:</p>
+<pre><code>&gt;&gt;&gt; import datetime
+&gt;&gt;&gt; today = datetime.datetime.now()
+</code></pre>
+<p>When I use the built-in function <code>str()</code> to display today:</p>
+<pre><code>&gt;&gt;&gt; str(today)
+'2012-03-14 09:21:58.130922'
+</code></pre>
+<p>You can see that the date was displayed as a string in a way that the user can understand the date and time. Now lets see when I use the built-in function <code>repr()</code>:</p>
+<pre><code>&gt;&gt;&gt; repr(today)
+'datetime.datetime(2012, 3, 14, 9, 21, 58, 130922)'
+</code></pre>
+<p>You can see that this also returned a string but the string was the &quot;official&quot; representation of a datetime object. What does official mean? Using the &quot;official&quot; string representation I can reconstruct the object:</p>
+<pre><code>&gt;&gt;&gt; eval('datetime.datetime(2012, 3, 14, 9, 21, 58, 130922)')
+datetime.datetime(2012, 3, 14, 9, 21, 58, 130922)
+</code></pre>
+<p>The <code>eval()</code> built-in function accepts a string and converts it to a datetime object.</p>
+<p>Most functions while trying to get the string representation use the <code>__str__</code> function, if missing uses <code>__repr__</code>. Thus in a general every class you code must have a <code>__repr__</code> and if you think it would be useful to have a string version of the object, as in the case of <code>datetime</code> create a <code>__str__</code> function.</p>
+<p>A few references:</p>
+<p><a href="http://stackoverflow.com/a/2626364/504262">Stackoverflow: http://stackoverflow.com/a/2626364/504262</a></p>
+
+    </section>
+
+    
+    <section class="side">
+      <div class="meta">
+	
+	<p class="date">Created on Mar 14 2012</p>
+	
+	
+	<ul class="tags">
+	  
+	  <li><a href="/Blog">Blog</a></li>
+	  
+	</ul>
+	
+      </div>
+      
+
+    </section>
+    
+  </article>
+</div>
+
+<div class="footer">
+  <div class="about">
+    <nav>
+      <li><a href="/Blog">Blog</a></li><li><a href="/Tags">Tags</a></li><li><a href="/Books">Books</a></li><li><a href="https://twitter.com/sat_ran">Twitter</a></li>
+    </nav>
+    
+    <div><p>Hi, I'm Satyajit Ranjeev. I'm an Engineering Leader at Solarisbank.
+I'm <a href="https://twitter.com/sat_ran">@sat_ran</a> on Twitter. Follow me for more such content.</p>
+</div>
+    
+  </div>
+  <div class="license">
+    
+    <p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png"></a><br><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">The website's theme, articles, images and all other content are licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US">Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License</a></p>
+
+    
+  </div>
+</div>
+</body>
+</html>
+

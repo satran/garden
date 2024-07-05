@@ -1,0 +1,105 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Satran&#39;s Digital Garden</title>
+    <link rel="shortcut icon" href="/favicon.png" />
+    <link rel="stylesheet" href="/base.css"/>
+  </head>
+  <body>
+    <nav class="main">
+      <li class="site-title"><a href="/">Satran&#39;s Digital Garden</a></li>
+      <li><a href="/Blog">Blog</a></li><li><a href="/Tags">Tags</a></li><li><a href="/Books">Books</a></li><li><a href="https://twitter.com/sat_ran">Twitter</a></li>
+    </nav>
+
+<div class="wrapper">
+  <article>
+    <section class="content">
+      
+      <h1 class="title">Django Managers</h1>
+      
+      <p>I have been working with Django for more than a two years now and the more I learn about it the more it gets better. I do have a few hiccups but there are solutions for them, mostly. Any ways one thing I find very interesting is the model’s manager. Objects  of a model, or a few objects, can be retrieved using these methods:</p>
+<pre><code>Model.objects.get()
+Model.objects.filter()
+</code></pre>
+<p>Manager allows you to create such methods for your own Models. Let me give you an example. I have been working on a calendar app for a while and I have a model which looks like this:</p>
+<pre><code>class EventCalendar(models.Model):
+    &quot;&quot;&quot;Create calendar for every year use this for different levels or departments&quot;&quot;&quot;
+    name = models.CharField(max_length=50)
+    academic_year = models.ForeignKey(AcademicYear)
+    is_closed = models.BooleanField(default=False)
+    is_default = models.BooleanField(default=False)
+</code></pre>
+<p>The is_closed boolean value tells me that the calendar is closed for adding events. Thus when I want to create a new event I should get just the list of calendars that is open. Thus I created a manager class:</p>
+<pre><code>class EventCalendarManager(models.Manager):
+    def list_open(self):
+        '''Lists all active or calendars on which events can be added.'''
+        return self.filter(is_closed=False)
+</code></pre>
+<p>and added a line to my EventCalendar model objects = EventCalendarManager(). Thus the entire code would look like this:</p>
+<p>The manager:</p>
+<pre><code>class EventCalendarManager(models.Manager):
+    def list_open(self):
+        '''Lists all active or calendars on which events can be added.'''
+        return self.filter(is_closed=False)
+</code></pre>
+<p>The model:</p>
+<pre><code>class EventCalendar(models.Model):
+    &quot;&quot;&quot;Create calendar for every year use this for different levels or departments&quot;&quot;&quot;
+    name = models.CharField(max_length=50)
+    academic_year = models.ForeignKey(AcademicYear)
+    is_closed = models.BooleanField(default=False)
+    is_default = models.BooleanField(default=False)
+    objects = EventCalendarManager()
+</code></pre>
+<p>And now if I want to list down the calendars open for adding events all I need to do is:</p>
+<pre><code>cals = EventCalendar.objects.list_open() 
+</code></pre>
+<p>I can similarly add a function to the manager class to return the default calendar and various other things. This has helped the way I implement my code. Hope you find this useful. Cheers!</p>
+
+    </section>
+
+    
+    <section class="side">
+      <div class="meta">
+	
+	<p class="date">Created on Sep 19 2011</p>
+	
+	
+	<ul class="tags">
+	  
+	  <li><a href="/Blog">Blog</a></li>
+	  
+	</ul>
+	
+      </div>
+      
+
+    </section>
+    
+  </article>
+</div>
+
+<div class="footer">
+  <div class="about">
+    <nav>
+      <li><a href="/Blog">Blog</a></li><li><a href="/Tags">Tags</a></li><li><a href="/Books">Books</a></li><li><a href="https://twitter.com/sat_ran">Twitter</a></li>
+    </nav>
+    
+    <div><p>Hi, I'm Satyajit Ranjeev. I'm an Engineering Leader at Solarisbank.
+I'm <a href="https://twitter.com/sat_ran">@sat_ran</a> on Twitter. Follow me for more such content.</p>
+</div>
+    
+  </div>
+  <div class="license">
+    
+    <p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png"></a><br><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">The website's theme, articles, images and all other content are licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US">Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License</a></p>
+
+    
+  </div>
+</div>
+</body>
+</html>
+

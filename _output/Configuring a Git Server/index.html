@@ -1,0 +1,131 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Satran&#39;s Digital Garden</title>
+    <link rel="shortcut icon" href="/favicon.png" />
+    <link rel="stylesheet" href="/base.css"/>
+  </head>
+  <body>
+    <nav class="main">
+      <li class="site-title"><a href="/">Satran&#39;s Digital Garden</a></li>
+      <li><a href="/Blog">Blog</a></li><li><a href="/Tags">Tags</a></li><li><a href="/Books">Books</a></li><li><a href="https://twitter.com/sat_ran">Twitter</a></li>
+    </nav>
+
+<div class="wrapper">
+  <article>
+    <section class="content">
+      
+      <h1 class="title">Configuring a Git Server</h1>
+      
+      <p>There are many ways to set up a Git server. In this article I am going to show you how you can do it using the SSH protocol. First I am assuming you have a UNIX or GNU/Linux machine with you. I am not very sure if this works well on windows, I am assuming it would.</p>
+<h1>Installing basic packages on the server</h1>
+<p>You must have ssh installed in your machine and the daemon must be running. On <a href="http://fedoraproject.org">Fedora</a> it comes in by default, while on <a href="http://ubuntu.com">Ubuntu</a> you have to install the <code>openssh-server</code> package. On a Mac the service is disabled by default. Go to System Preferences -&gt; Sharing and enable Remote Login.</p>
+<p>Now that you have <code>sshd</code> enabled we can proceed to setting up the git server. You must have git installed in the machine, get the instructions for your machine <a href="http://git-scm.com/download">here</a>. For the rest of the document I am going to call the server <code>r2d2</code> and the client machine <code>gandalf</code>.</p>
+<h1>Creating the Repository</h1>
+<p>It is best to have a dedicated user for the git repository. I have created a user called <code>git</code> in <code>r2d2</code> and have placed my repositories inside the directory <code>~git/repositories</code>. Either you can copy an existing repository or create a new one. I will show you both. To create a new repository <code>hello_world</code> run this command in the repository directory.</p>
+<pre><code>git --init bare hello_world.git
+</code></pre>
+<p>To copy an existing repository, assuming the repository is in /var/ftp/hello_world, run</p>
+<pre><code>git clone --bare /var/ftp/hello_world hello_world.git
+</code></pre>
+<p>Now that you have the repository create let me show you how to access it.</p>
+<h1>Accessing the Repository</h1>
+<p>On the client <code>gandalf</code> I need to create a ssh key pair. My user on <code>gandalf</code> is <code>satyajit</code>. To create the ssh key pair I run this command:</p>
+<pre><code>ssh-keygen
+</code></pre>
+<p>You will see an output similar to this</p>
+<pre><code>Generating public/private rsa key pair.
+Enter file in which to save the key (/home/satyajit/.ssh/id_rsa): 
+Created directory '/home/satyajit/.ssh'.
+Enter passphrase (empty for no passphrase): 
+Enter same passphrase again: 
+Your identification has been saved in /home/satyajit/.ssh/id_rsa.
+Your public key has been saved in /home/satyajit/.ssh/id_rsa.pub.
+The key fingerprint is:
+83:77:da:13:a9:da:26:eb:dd:7b:9a:35:59:ff:50:cd satyajit@r2d2
+The key's randomart image is:
++--[ RSA 2048]----+
+|                 |
+|                 |
+|                 |
+|       .   .   ..|
+|      . S +   . E|
+|       . * . o o |
+|        o o + . .|
+|      .+.. +.. ..|
+|     .++o =+    .|
++-----------------+
+</code></pre>
+<p>This will create two files <code>~/.ssh/id_rsa</code> and <code>~/.ssh/id_rsa.pub</code>. The <code>id_rsa.pub</code> is your public key. Copy this file into the server <code>r2d2</code>. Lets say I copied it to <code>~git/keys</code> as <code>satyajit.pub</code>. To give access to the git user add the key <code>satyajit.pub</code> to the <code>authorized_keys</code>.</p>
+<pre><code>cat ~/keys/satyajit.pub &gt;&gt; ~/.ssh/authorized_keys
+</code></pre>
+<p>This will copy your public key to the <code>authorized keys</code> in the server. Doing this allows access to the server via ssh using the git user, without having to type in the git's password.</p>
+<p>To clone the repository hello_world, from your client <code>gandalf</code> run:</p>
+<pre><code>git clone git@192.168.1.1:~git/repositories/hello_world.git
+</code></pre>
+<p>Please note I have used the server's IP address here, you can replace it with the host name of your server. Since git has read and write permission on the repositories folder you can push the data too.</p>
+<p>If you want to share the repository with other users just copy their public keys and append them to the authorized_keys file.</p>
+<p>Further if you want to prevent shell access to the system using the user <code>git</code> edit the /etc/passwd file:</p>
+<pre><code>sudo vim /etc/passwd
+</code></pre>
+<p>At the bottom of the file you will find the <code>git</code> user's configuration:</p>
+<pre><code>git:x:1003:10003::/home/git:/bin/sh
+</code></pre>
+<p>Just replace the <code>/bin/sh</code> to <code>/usr/bin/git-shell</code> as shown below:</p>
+<pre><code>git:x:1003:10003::/home/git:/usr/bin/git-shell
+</code></pre>
+<p>Now if you try accessing ssh using the user <code>git</code> you will get a response similar to</p>
+<pre><code>ssh git@192.168.1.1
+fatal: What do you think I am? A shell?
+Connection to gitserver closed.
+</code></pre>
+<h1>Notes</h1>
+<p>Please keep in mind this is definitely not the best method to use in a public network. It is suitable for a small team in a local network. When you have many users copying and managing all the public keys will become a task by itself. Stay tuned for another article on how to do that.</p>
+
+    </section>
+
+    
+    <section class="side">
+      <div class="meta">
+	
+	<p class="date">Created on Nov 19 2011</p>
+	
+	
+	<ul class="tags">
+	  
+	  <li><a href="/Blog">Blog</a></li>
+	  
+	</ul>
+	
+      </div>
+      
+
+    </section>
+    
+  </article>
+</div>
+
+<div class="footer">
+  <div class="about">
+    <nav>
+      <li><a href="/Blog">Blog</a></li><li><a href="/Tags">Tags</a></li><li><a href="/Books">Books</a></li><li><a href="https://twitter.com/sat_ran">Twitter</a></li>
+    </nav>
+    
+    <div><p>Hi, I'm Satyajit Ranjeev. I'm an Engineering Leader at Solarisbank.
+I'm <a href="https://twitter.com/sat_ran">@sat_ran</a> on Twitter. Follow me for more such content.</p>
+</div>
+    
+  </div>
+  <div class="license">
+    
+    <p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png"></a><br><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">The website's theme, articles, images and all other content are licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US">Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License</a></p>
+
+    
+  </div>
+</div>
+</body>
+</html>
+

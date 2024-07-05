@@ -1,0 +1,154 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Satran&#39;s Digital Garden</title>
+    <link rel="shortcut icon" href="/favicon.png" />
+    <link rel="stylesheet" href="/base.css"/>
+  </head>
+  <body>
+    <nav class="main">
+      <li class="site-title"><a href="/">Satran&#39;s Digital Garden</a></li>
+      <li><a href="/Blog">Blog</a></li><li><a href="/Tags">Tags</a></li><li><a href="/Books">Books</a></li><li><a href="https://twitter.com/sat_ran">Twitter</a></li>
+    </nav>
+
+<div class="wrapper">
+  <article>
+    <section class="content">
+      
+      <h1 class="title">Bitter Sweet Acme</h1>
+      
+      <p>The first time someone mentioned Acme, I immediately thought of The Road Runner show. Anvils, bombs, rockets all made by Acme. If I remember well anything Wile E. Coyote bought,it was from the Acme Corporation. Acme meaning the peak, zenith or prime. So when Rob Pike had to name his editor, which did &quot;everything&quot; Acme was the perfect choice.</p>
+<blockquote>
+<p>When I started working on Acme, I had a pretty strong idea about what it would be and what it would look like, but I didn't have a name yet. As I usually did at the time, on Friday night I went to Times Square for Movie Night. Penn Jillette was there, and I told him I needed a name for my new project.</p>
+</blockquote>
+<blockquote>
+<p>&quot;What does it do?&quot; he asked.</p>
+</blockquote>
+<blockquote>
+<p>&quot;Umm... Everything.&quot; I said.</p>
+</blockquote>
+<blockquote>
+<p>&quot;Acme,&quot; said Penn, and laughed.</p>
+</blockquote>
+<blockquote>
+<p><a href="http://research.swtch.com/acme">Rob Pike</a></p>
+</blockquote>
+<p>Acme has not gotten the popularity of Emacs or Vim. It is probably because it is counter to what people think an editor is capable of doing. These are a few features that I used to think an editor should be good at:</p>
+<ul>
+<li>have complex key-bindings to navigate to any part of the file, modify text</li>
+<li>be able to completely use the keyboard, as every one knows that using the mouse is counter productive</li>
+<li>ability to extend it with some language, even if it means ripping your heart of while using it</li>
+<li>customize the look and feel to my needs</li>
+<li>have great syntax highlighting</li>
+</ul>
+<p>Acme does none of it, though it allows you to <strong>extend with any language of your choice</strong>. It is absolutely minimal. I remember our company's designer almost instantly said it looks ugly. Well that's what I thought at first. But the colour choices in the editor are well thought. The colours are picked using the triad colour scheme of the base background colour. The background causes the least strain to the eye on prolonged usage. Whether it was intentionally or out of randomness the colours are almost perfect. There is no way to change the colours but by editing the code.</p>
+<p>The few key bindings it provides are:</p>
+<ul>
+<li>ctrl + f: tries to auto complete a path, something like tab would do in a bash shell.</li>
+<li>ctrl +w: deletes the previous word</li>
+<li>Esc: selects the last typed characters</li>
+<li>ctrl + u: deletes to the start of the line</li>
+<li>ctrl + a: moves the cursor to beginning of the line</li>
+<li>ctrl + e: moves the cursor to the end of the line</li>
+<li>ctrl + i: inserts a tab</li>
+<li>ctrl + h: deletes a character</li>
+<li>ctrl + j: break the line at the cursor</li>
+</ul>
+<p>I have not tested these key-bindings in any other system so I'm not sure if it is the OS which is doing parts of it.</p>
+<p>It has no syntax highlighting nor does it have line numbers. It uses the mouse extensively. The fonts almost look terrible. You just <strong>cannot</strong> move between lines using the up and down arrow keys. So one might ask why did I leave the comfort of Vim to use this for the past one month? Because it could do, as Rob Pike put it, &quot;Umm... Everything.&quot;</p>
+<p>Using Acme as my primary editor for the past month has taught me that simplicity and minimalism is everything. The jarring colours of my colour scheme does not come in the way while I program. I do not spend time trying to change the green colour for keywords. It has no configuration files, so one less file to maintain. I do not spend hours on the :help page trying to figure out the right key combination to do x or y. I feel comfortable that I do not need to leave the editor to execute a command in the shell. Everything is right here in my editor. In fact it feels like an IDE built completely out of UNIX.</p>
+<p><strong>It uses the mouse, and it is a good thing.</strong></p>
+<p>Most of your work is done using the mouse. <a href="http://jlouisramblings.blogspot.in/2013/04/acme-as-editor_20.html">Jesper L. Andersen</a> gave a wonderful description of the mouse usage:</p>
+<blockquote>
+<p>In a moded editor like vim, you are usually either in command mode for cursor movement or in insert mode for entering text. To understand acme, it is the same, either you have a hand on your mouse and are doing commands, or you are inserting text into the buffer at some place.</p>
+</blockquote>
+<p>Copy, paste, cut is done using the mouse. Unlike the usual GUI tools where you right click to get a menu to cut+copy+paste Acme uses mouse chords. You select the text using the left button, while still pressing the button you press the middle button and that does a cut. Pressing the left button and the right button in succession pastes the text. Left+middle+right does a copy. It seems a bit weird to start of with but chords become amazing the more you use it.</p>
+<p>The middle button executes selected text or the word under the cursor. Thus middle clicking <code>make</code> executes make and the output is pasted into a +Errors buffer. If the command spewed out errors right clicking on a <code>src/hello/hello.go:34</code> opens the hello.go file and moves the cursor to the 34th line. The right click instructs Acme to locate or acquire the file search for a string or even open a link in your web browser. You can also sweep using the appropriate button to avoid selecting and clicking. Right click on acme(1) and it opens the man page. All this is done through what the authors call plumbing (which comes from Plan9 OS).</p>
+<p>Instead of developing tools to search files in project folder the authors decided it would be best if existing tools served the purpose. Executing <code>grep -rn &quot;func hello&quot; *.go&quot;</code> brings up a +Errors buffer with the output of grep which you can right click to open the required file. Acme allows you to extend it using any command in your shell PATH. With principles founded in the Plan9 OS Acme exports everything using a file system. So if you want to edit the first buffer's tag you can write into the /mnt/acme/1/tag.</p>
+<p>There are a few tricks I learnt over the past month which might be useful to a few. Here they are:</p>
+<ul>
+<li>
+<p>To find which line number you are on execute Edit =</p>
+</li>
+<li>
+<p>Right clicking on :34 takes you to the 34th line of the buffer</p>
+</li>
+<li>
+<p>Middle+Left button on a command executes the previously selected text as an argument. I keep a separate buffer with commands that I use in several buffers. One such is gofmt. Selecting <code>,|gofmt $%</code> and executing Edit formats my go code.</p>
+</li>
+<li>
+<p><code>:/foobar</code> - searches backwards</p>
+</li>
+<li>
+<p>Executing Edit with arguments:</p>
+<ul>
+<li><code>,</code> selects the whole file</li>
+<li><code>#0</code> takes you to the top of the file</li>
+<li><code>&lt;range&gt;d</code>  deletes text in range</li>
+<li><code>s/regex/text/[g]</code>  replaces regex with text</li>
+<li><code>&lt;range&gt;m a1</code> moves range to after a1</li>
+<li><code>&lt;range&gt;t a1</code>  copies range to after a1</li>
+</ul>
+</li>
+<li>
+<p>Acme takes a few arguments:</p>
+<ul>
+<li><code>-a</code> does auto indent. Export variable <code>tabstop</code> to specify the width of a tab.</li>
+<li><code>-f</code> specifies the font. It can use the OS's fonts. To use Inconsolata you can pass -f /mnt/font/Inconsolata/12a/font. The a in 12a sets antialias.</li>
+<li>with <code>-F</code> you can specify another fixed font. You can execute Font to switch between fonts</li>
+</ul>
+</li>
+<li>
+<p>You can pass a file name as an argument to Dump. Use it to store various sessions.</p>
+</li>
+</ul>
+<p>Russ Cox has made a wonderful introductory <a href="http://research.swtch.com/acme">video</a>. That should be your start point.</p>
+<p>Acme has taught me to leave all that is unnecessary and concentrate on the code that I write using the tools provided by the OS. It takes the &quot;Everything is a file&quot; to a whole new level. It is the Zen of all Editors.</p>
+
+    </section>
+
+    
+    <section class="side">
+      <div class="meta">
+	
+	<p class="date">Created on May 25 2014</p>
+	
+	
+	<ul class="tags">
+	  
+	  <li><a href="/Blog">Blog</a></li>
+	  
+	</ul>
+	
+      </div>
+      
+
+    </section>
+    
+  </article>
+</div>
+
+<div class="footer">
+  <div class="about">
+    <nav>
+      <li><a href="/Blog">Blog</a></li><li><a href="/Tags">Tags</a></li><li><a href="/Books">Books</a></li><li><a href="https://twitter.com/sat_ran">Twitter</a></li>
+    </nav>
+    
+    <div><p>Hi, I'm Satyajit Ranjeev. I'm an Engineering Leader at Solarisbank.
+I'm <a href="https://twitter.com/sat_ran">@sat_ran</a> on Twitter. Follow me for more such content.</p>
+</div>
+    
+  </div>
+  <div class="license">
+    
+    <p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png"></a><br><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">The website's theme, articles, images and all other content are licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US">Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License</a></p>
+
+    
+  </div>
+</div>
+</body>
+</html>
+

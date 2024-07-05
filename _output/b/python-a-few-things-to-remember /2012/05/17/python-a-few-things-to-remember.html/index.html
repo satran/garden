@@ -1,0 +1,253 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Satran&#39;s Digital Garden</title>
+    <link rel="shortcut icon" href="/favicon.png" />
+    <link rel="stylesheet" href="/base.css"/>
+  </head>
+  <body>
+    <nav class="main">
+      <li class="site-title"><a href="/">Satran&#39;s Digital Garden</a></li>
+      <li><a href="/Blog">Blog</a></li><li><a href="/Tags">Tags</a></li><li><a href="/Books">Books</a></li><li><a href="https://twitter.com/sat_ran">Twitter</a></li>
+    </nav>
+
+<div class="wrapper">
+  <article>
+    <section class="content">
+      
+      <h1 class="title">A few things to remember while coding in Python</h1>
+      
+      <p>UPDATE: There has been much discussion in <a href="http://news.ycombinator.com/item?id=3996708">Hacker News</a> about this article. A few corrections from it.</p>
+<h2>Zen of Python</h2>
+<p>Learning the culture that surrounds a language brings you one step closer to being a better programmer. If you haven't read the Zen of Python yet open a Python prompt and type <code>import this</code>. For each of the item on the list you can find examples here  <a href="http://artifex.org/~hblanks/talks/2011/pep20_by_example.html">http://artifex.org/~hblanks/talks/2011/pep20_by_example.html</a></p>
+<p>One caught my attention:</p>
+<p><strong>Beautiful is better than ugly</strong></p>
+<p>Give me a function that takes a list of numbers and returns only the even ones, divided by two.</p>
+<pre><code># -----------------------------------------------------------------------
+
+halve_evens_only = lambda nums: map(lambda i: i/2, filter(lambda i: not i%2, nums))
+
+# -----------------------------------------------------------------------
+
+def halve_evens_only(nums):
+    return [i/2 for i in nums if not i % 2]
+</code></pre>
+<h2>Remember the very simple things in Python</h2>
+<ul>
+<li>
+<p>Swaping two variables:</p>
+<pre><code>  a, b = b, a
+</code></pre>
+</li>
+<li>
+<p>The step argument in slice operators. For example:</p>
+<pre><code>  &gt;&gt; a = [1,2,3,4,5]
+  &gt;&gt; a[::2]  # iterate over the whole list in 2-increments
+  [1,3,5]
+</code></pre>
+<p>The special case <code>x[::-1]</code> is a useful idiom for 'x reversed'.</p>
+<pre><code>  &gt;&gt; a[::-1]
+  [5,4,3,2,1]
+</code></pre>
+</li>
+</ul>
+<p>UPDATE: Do keep in mind <code>x.reverse()</code> reverses the list in place and slices gives you the ability to do this:</p>
+<pre><code>	&gt;&gt; x[::-1]
+	[5, 4, 3, 2, 1]
+	
+	&gt;&gt; x[::-2]
+	[5, 3, 1]
+</code></pre>
+<h2>Don't use mutables as defaults</h2>
+<pre><code>def function(x, l=[]):          # Don't do this
+
+def function(x, l=None):        # Way better
+    if l is None:
+        l = []
+</code></pre>
+<p>UPDATE: I realise I haven't explained why. I would recommend reading the <a href="http://effbot.org/zone/default-values.htm">article by Fredrik Lundh</a>.
+In short it is by design that this happens. &quot;Default parameter values are always evaluated when, and only when, the “def” statement they belong to is executed;&quot;</p>
+<h2>Use <code>iteritems</code> rather than <code>items</code></h2>
+<p><code>iteritems</code> uses <code>generators</code> and thus are better while iterating through very large lists.</p>
+<pre><code>d = {1: &quot;1&quot;, 2: &quot;2&quot;, 3: &quot;3&quot;}
+
+for key, val in d.items()       # builds complete list when called.
+
+for key, val in d.iteritems()   # calls values only when requested.
+</code></pre>
+<p>This is similar with <code>range</code> and <code>xrange</code> where <code>xrange</code> only calls values when requested.</p>
+<p>UPDATE: Do note that the <code>iteritems</code>, <code>iterkeys</code>, <code>itervalues</code> are removed from Python 3.x. The <code>dict.keys()</code>, <code>dict.items()</code> and <code>dict.values()</code> return views instead of <code>lists</code>. <a href="http://docs.python.org/release/3.1.5/whatsnew/3.0.html#views-and-iterators-instead-of-lists">http://docs.python.org/release/3.1.5/whatsnew/3.0.html#views-and-iterators-instead-of-lists</a></p>
+<h2>Use <code>isinstance</code> rather than <code>type</code></h2>
+<p>Don't do</p>
+<pre><code>if type(s) == type(&quot;&quot;): ...
+if type(seq) == list or \
+   type(seq) == tuple: ...
+</code></pre>
+<p>rather:</p>
+<pre><code>if isinstance(s, basestring): ...
+if isinstance(seq, (list, tuple)): ...
+</code></pre>
+<p>For why not to do so: <a href="http://stackoverflow.com/a/1549854/504262">http://stackoverflow.com/a/1549854/504262</a></p>
+<p>Notice I used <code>basestring</code> and not <code>str</code> as you might be trying to check if a unicode object is a string. For example:</p>
+<pre><code>    &gt;&gt; a=u'aaaa'
+    &gt;&gt; print isinstance(a, basestring)
+True
+    &gt;&gt; print isinstance(a, str)
+False
+</code></pre>
+<p>This is because in Python versions below 3.0 there are two string types <code>str</code> and <code>unicode</code>:</p>
+<pre><code>      object
+         |
+         |
+     basestring
+        / \
+       /   \
+     str  unicode
+</code></pre>
+<h2>Learn the various <a href="http://docs.python.org/library/collections.html"><code>collections</code></a></h2>
+<p>Python has various container datatypes which are better alternative to the built-in containers like <code>list</code> and <code>dict</code> for specific cases.</p>
+<p><s>Generally most use this:</s>
+UPDATE: I'm sure most do not use this. Carelessness from my side. A few may consider writing it this way:</p>
+<pre><code>freqs = {}
+for c in &quot;abracadabra&quot;:
+    try:
+        freqs[c] += 1
+    except:
+        freqs[c] = 1
+</code></pre>
+<p>Some may say a better solution would be:</p>
+<pre><code>freqs = {}
+for c in &quot;abracadabra&quot;:
+    freqs[c] = freqs.get(c, 0) + 1
+</code></pre>
+<p>Rather go for the <code>collection</code> type <code>defaultdict</code></p>
+<pre><code>from collections import defaultdict
+freqs = defaultdict(int)
+for c in &quot;abracadabra&quot;:
+    freqs[c] += 1
+</code></pre>
+<p><strong>Other collections</strong></p>
+<pre><code>namedtuple()	# factory function for creating tuple subclasses with named fields	
+deque	        # list-like container with fast appends and pops on either end	
+Counter	        # dict subclass for counting hashable objects	
+OrderedDict	    # dict subclass that remembers the order entries were added	
+defaultdict	    # dict subclass that calls a factory function to supply missing values	
+</code></pre>
+<p>UPDATE: As noted by a few in Hacker News I could have used <code>Counter</code> instead of <code>defaultdict</code>.</p>
+<pre><code>	&gt;&gt; from collections import Counter
+	&gt;&gt; c = Counter(&quot;abracadabra&quot;)
+	&gt;&gt; c['a']
+	5
+</code></pre>
+<h2>When creating classes Python's <a href="http://www.rafekettler.com/magicmethods.html">magic methods</a></h2>
+<pre><code>__eq__(self, other)      # Defines behavior for the equality operator, ==.
+__ne__(self, other)      # Defines behavior for the inequality operator, !=.
+__lt__(self, other)      # Defines behavior for the less-than operator, &amp;lt;.
+__gt__(self, other)      # Defines behavior for the greater-than operator, &gt;.
+__le__(self, other)      # Defines behavior for the less-than-or-equal-to operator, &amp;lt;=.
+__ge__(self, other)      # Defines behavior for the greater-than-or-equal-to operator, &gt;=.
+</code></pre>
+<p>There are several others.</p>
+<h2>Conditional Assignments</h2>
+<pre><code>x = 3 if (y == 1) else 2
+</code></pre>
+<p>It does exactly what it sounds like: &quot;assign 3 to x if y is 1, otherwise assign 2 to x&quot;. You can also chain it if you have something more complicated:</p>
+<pre><code>x = 3 if (y == 1) else 2 if (y == -1) else 1
+</code></pre>
+<p>Though at a certain point, it goes a little too far.</p>
+<p>Note that you can use if ... else in any expression. For example:</p>
+<pre><code>(func1 if y == 1 else func2)(arg1, arg2) 
+</code></pre>
+<p>Here <code>func1</code> will be called if y is 1 and <code>func2</code>, otherwise. In both cases the corresponding function will be called with arguments arg1 and arg2.</p>
+<p>Analogously, the following is also valid:</p>
+<pre><code>x = (class1 if y == 1 else class2)(arg1, arg2)
+</code></pre>
+<p>where <code>class1</code> and <code>class2</code> are two classes.</p>
+<h2>Use the <code>Ellipsis</code> when necessary</h2>
+<p>UPDATE: As one commenter mentioned in Hacker News &quot;Using Ellipsis for getting all items is a violation of the Only One Way To Do It principle. The standard notation is <code>[:]</code>.&quot; I do agree with him. A better example is given using numpy in <a href="http://stackoverflow.com/a/118508/504262">stackoverflow</a>:</p>
+<p>The ellipsis is used to slice higher-dimensional data structures.</p>
+<p>It's designed to mean at this point, insert as many full slices (:) to extend the multi-dimensional slice to all dimensions.</p>
+<p>Example:</p>
+<pre><code>	&gt;&gt; from numpy import arange
+	&gt;&gt; a = arange(16).reshape(2,2,2,2)
+</code></pre>
+<p>Now, you have a 4-dimensional matrix of order 2x2x2x2. To select all first elements in the 4th dimension, you can use the ellipsis notation</p>
+<pre><code>	&gt;&gt; a[..., 0].flatten()
+	array([ 0,  2,  4,  6,  8, 10, 12, 14])
+</code></pre>
+<p>which is equivalent to</p>
+<pre><code>	&gt;&gt; a[:,:,:,0].flatten()
+	array([ 0,  2,  4,  6,  8, 10, 12, 14])
+</code></pre>
+<p><strong>Previous suggestion.</strong></p>
+<p>When creating a class you can use <code>__getitem__</code> to make you class' object work like a dictionary. Take this class as an example:</p>
+<pre><code>	class MyClass(object):
+	    def __init__(self, a, b, c, d):
+	        self.a, self.b, self.c, self.d = a, b, c, d
+	
+	    def __getitem__(self, item):
+	        return getattr(self, item)
+	
+	x = MyClass(10, 12, 22, 14)
+</code></pre>
+<p>Because of <code>__getitem__</code> you will be able to get the value of <code>a</code> in the object <code>x</code> by <code>x['a']</code>. This is probably a known fact.</p>
+<p>This object is used to extend the Python slicing.(<a href="http://docs.python.org/library/stdtypes.html#bltin-ellipsis-object">http://docs.python.org/library/stdtypes.html#bltin-ellipsis-object</a>). Thus if we add a clause:</p>
+<pre><code>def __getitem__(self, item):
+    if item is Ellipsis:
+        return [self.a, self.b, self.c, self.d]
+    else:
+        return getattr(self, item)
+</code></pre>
+<p>We can use <code>x[...]</code> to get a list containing all the items.</p>
+<pre><code>	&gt;&gt; x = MyClass(11, 34, 23, 12)
+	&gt;&gt; x[...]
+	[11, 34, 23, 12]
+</code></pre>
+
+    </section>
+
+    
+    <section class="side">
+      <div class="meta">
+	
+	<p class="date">Created on May 17 2012</p>
+	
+	
+	<ul class="tags">
+	  
+	  <li><a href="/Blog">Blog</a></li>
+	  
+	</ul>
+	
+      </div>
+      
+
+    </section>
+    
+  </article>
+</div>
+
+<div class="footer">
+  <div class="about">
+    <nav>
+      <li><a href="/Blog">Blog</a></li><li><a href="/Tags">Tags</a></li><li><a href="/Books">Books</a></li><li><a href="https://twitter.com/sat_ran">Twitter</a></li>
+    </nav>
+    
+    <div><p>Hi, I'm Satyajit Ranjeev. I'm an Engineering Leader at Solarisbank.
+I'm <a href="https://twitter.com/sat_ran">@sat_ran</a> on Twitter. Follow me for more such content.</p>
+</div>
+    
+  </div>
+  <div class="license">
+    
+    <p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png"></a><br><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">The website's theme, articles, images and all other content are licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US">Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License</a></p>
+
+    
+  </div>
+</div>
+</body>
+</html>
+

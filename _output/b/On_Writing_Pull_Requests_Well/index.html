@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Satran&#39;s Digital Garden</title>
+    <link rel="shortcut icon" href="/favicon.png" />
+    <link rel="stylesheet" href="/base.css"/>
+  </head>
+  <body>
+    <nav class="main">
+      <li class="site-title"><a href="/">Satran&#39;s Digital Garden</a></li>
+      <li><a href="/Blog">Blog</a></li><li><a href="/Tags">Tags</a></li><li><a href="/Books">Books</a></li><li><a href="https://twitter.com/sat_ran">Twitter</a></li>
+    </nav>
+
+<div class="wrapper">
+  <article>
+    <section class="content">
+      
+      <h1 class="title">On Writing Pull Requests Well</h1>
+      
+      <p>I had a conversation recently with a colleague about pull requests. After a few discussions to and fro I thought it might serve him and me best if I could pen my thoughts.</p>
+<p>For those still unfamiliar with the concept of Pull Requests, a GitHub jargon, it is a way to request changes to a software repository. Email was used in the past and still is in the Kernel community. GitLab calls it Merge Requests. These principles apply for any method you choose to use.</p>
+<h1>Motivation</h1>
+<p>Motivation is the main factor that decides how a Pull Request
+ends up. When I create a Pull Request here are my primary motivations:</p>
+<ul>
+<li>I want the reviewer to understand the intent of my change</li>
+<li>The reviewer should be able to spot things that I have missed out
+while making the change</li>
+</ul>
+<p>When I consider these motivations, my attitude towards creating the pull request changes. When my primary motivation is to finish the ticket that I am working on as soon as possible a Pull Request can look like a nightmare for the reviewer. I'm not undermining the need to finish a ticket. It is how we earn money so it is important, but it is secondary.</p>
+<p>In this article I list three principles I value the most when creating a Pull Request.</p>
+<h2>1. The size of the PR matters</h2>
+<p>When a Pull Request is long it is a cognitive load for the
+reviewer. The longer it gets, the more difficult it is for the
+reviewer to keep the changes in his head. I prefer short Pull
+Requests. It is a bit more of effort from my side, but it ensures my Pull Request is easily reviewed and is merged on time. The longer a Pull Request the longer it takes to review and thus get merged.</p>
+<h2>2. If you must, use git commits</h2>
+<p>There are times when it is difficult to make small changes as it would either not be feature complete, would break tests, or add your valid reason here. At these times I tend to break it down in small git commits. This way the reviewer can follow my change process via the git history.</p>
+<h2>3. Don't do too many changes in the same PR</h2>
+<p>It is all too alluring to rename a variable or restructure a file in the same PR where you want to fix a bug. Don't. It makes it difficult for the reviewer to see what has actually changed. What is actually a few lines of change now looks like multiple functions deleted and new ones added. It is best to keep the changes to one functionality or bug fix.</p>
+<p>Code is written for others to read. I think this has been said several times in the community. Pull Requests follow the same principle, even more so. It conveys what I as an author propose to alter/modify in the project. It is not easy. It takes time and thought. But the benefits out weights the costs. If I want the reviewer to do a good job it is my job to make it easy for him. Remember the motivation, it changes how a Pull Request is made.</p>
+
+    </section>
+
+    
+    <section class="side">
+      <div class="meta">
+	
+	<p class="date">Created on Dec 10 2018</p>
+	
+	
+	<ul class="tags">
+	  
+	  <li><a href="/Blog">Blog</a></li>
+	  
+	</ul>
+	
+      </div>
+      
+
+    </section>
+    
+  </article>
+</div>
+
+<div class="footer">
+  <div class="about">
+    <nav>
+      <li><a href="/Blog">Blog</a></li><li><a href="/Tags">Tags</a></li><li><a href="/Books">Books</a></li><li><a href="https://twitter.com/sat_ran">Twitter</a></li>
+    </nav>
+    
+    <div><p>Hi, I'm Satyajit Ranjeev. I'm an Engineering Leader at Solarisbank.
+I'm <a href="https://twitter.com/sat_ran">@sat_ran</a> on Twitter. Follow me for more such content.</p>
+</div>
+    
+  </div>
+  <div class="license">
+    
+    <p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png"></a><br><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">The website's theme, articles, images and all other content are licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US">Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License</a></p>
+
+    
+  </div>
+</div>
+</body>
+</html>
+

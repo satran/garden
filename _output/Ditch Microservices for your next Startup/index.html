@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Satran&#39;s Digital Garden</title>
+    <link rel="shortcut icon" href="/favicon.png" />
+    <link rel="stylesheet" href="/base.css"/>
+  </head>
+  <body>
+    <nav class="main">
+      <li class="site-title"><a href="/">Satran&#39;s Digital Garden</a></li>
+      <li><a href="/Blog">Blog</a></li><li><a href="/Tags">Tags</a></li><li><a href="/Books">Books</a></li><li><a href="https://twitter.com/sat_ran">Twitter</a></li>
+    </nav>
+
+<div class="wrapper">
+  <article>
+    <section class="content">
+      
+      <h1 class="title">Ditch Microservices for your next Startup</h1>
+      
+      <p>Look at the interest grow about micro services. There is a conference dedicated to it, MicroXchg, and I
+<span>spoke<sup><label for="mn-1" class="margin-toggle">1</label></sup></span>
+<input type="checkbox" id="mn-1" class="margin-toggle"/>
+<span class="marginnote">1. <a href="https://www.youtube.com/watch?v=yVUiA6gDhKU">Complexities of micro services and event sourcing</a> </span> at it. If you are thinking of building micro services I urge you to reason out the complexities involved. If you are starting fresh or are a small team micro services is not the right choice.</p>
+<p><img src="/microservices-trend.png" alt="Screenshot Micro Services Trend" title="Google trends on Micro Services."></p>
+<p>In 2015 I joined OptioPay to build a system that transfers money. We had a clean slate to build an API that our UI team would consume. We decided to build it using micro services, this with a team of six.</p>
+<p><strong>Service Decomposition</strong></p>
+<p>One of our early challenges was service decomposition. Martin Fowler describes in his
+<span>article<sup><label for="mn-2" class="margin-toggle">2</label></sup></span>
+<input type="checkbox" id="mn-2" class="margin-toggle"/>
+<span class="marginnote">2. <a href="https://martinfowler.com/bliki/BoundedContext.html">Martin Fowler on Bounded Context</a> </span> to use bounded context. He summarizes what Eric Evans says in his book, the
+<span>Domain Driven Design<sup><label for="mn-3" class="margin-toggle">3</label></sup></span>
+<input type="checkbox" id="mn-3" class="margin-toggle"/>
+<span class="marginnote">3. <a href="https://www.amazon.de/gp/product/0321125215/ref=as_li_tl?ie=UTF8&amp;camp=1638&amp;creative=6742&amp;creativeASIN=0321125215&amp;linkCode=as2&amp;tag=satranin-21">Domain-Driven Design: Tackling Complexity in the Heart of Software</a> </span>. This is the right approach to decompose services. The challenge though is when you are starting a product the domain is not very clear. You learn the natural boundaries by time either through planned experiments or acquired experience.</p>
+<p>We got it wrong, big time, by choosing to decompose services based on entities. If I were creating a system for a blog engine with entities Article, Comment, Tag and User for each I would have a service. This let us to 73 services of which 41 are API servers. Remember we were a team of six. Decomposing services incorrectly led us to have dependencies between each other. The below image shows dependencies between services that run on production.</p>
+<p><img src="/dependencies.png" alt="Service Dependencies" title="Service Dependencies"></p>
+<p>The problem with dependencies is the tight coupling between them. Adding new functionality affects multiple services. This causes duplication of work because you tend to write similar functionality in dependent services.</p>
+<p>I recommend not to start with micro services because it is difficult to determine the natural boundaries at the beginning. If you are like us, a start-up that is venturing into a new field, you may not have many domain experts. You may gain knowledge of the domain over time.</p>
+<p><strong>Operations</strong></p>
+<p>With a monolith you have a few services to monitor, deploy and debug. When things go wrong you know where to look. The number of systems you need to monitor are substantially less. Micro services adds overhead to deployment and debugging. You will have to think a global monitoring system which provides uniform metrics. Logs from all services must be pushed to a centralized system if you want to keep your sanity. What about load balancing? This is quite an overhead for a small team.</p>
+<p>Looking through all our tickets on Jira over the last one and a half year I observed 11% of our tasks per week are related to operational tasks. These do not include complexity and duration of each of the tasks. I remember tasks relating to our staging environments dragged for several weeks. Here is a pattern of tasks that relate to infrastructure added.</p>
+<p><img src="/operations.png" alt="Number of operational tasks" title="Tasks related to operations"></p>
+<p>There are some who
+<span>claim<sup><label for="mn-4" class="margin-toggle">4</label></sup></span>
+<input type="checkbox" id="mn-4" class="margin-toggle"/>
+<span class="marginnote">4. <a href="https://www.oreilly.com/ideas/microservices-shift-complexity-to-where-it-belongs">Shift complexity to where it belongs</a> </span> it is better to move complexity to infrastructure tasks as these can be automated. For larger teams with this might work but not for a small team like ours.</p>
+<p>I have provided you with two reasons not to do micro services for your next start-up. The talk I gave at MicroXchg 2017 discusses a bit more about the same topic. My hope is that you learn from our mistakes.</p>
+
+    </section>
+
+    
+    <section class="side">
+      <div class="meta">
+	
+	<p class="date">Created on Feb 26 2017</p>
+	
+	
+	<ul class="tags">
+	  
+	  <li><a href="/Blog">Blog</a></li>
+	  
+	</ul>
+	
+      </div>
+      
+
+    </section>
+    
+  </article>
+</div>
+
+<div class="footer">
+  <div class="about">
+    <nav>
+      <li><a href="/Blog">Blog</a></li><li><a href="/Tags">Tags</a></li><li><a href="/Books">Books</a></li><li><a href="https://twitter.com/sat_ran">Twitter</a></li>
+    </nav>
+    
+    <div><p>Hi, I'm Satyajit Ranjeev. I'm an Engineering Leader at Solarisbank.
+I'm <a href="https://twitter.com/sat_ran">@sat_ran</a> on Twitter. Follow me for more such content.</p>
+</div>
+    
+  </div>
+  <div class="license">
+    
+    <p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png"></a><br><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">The website's theme, articles, images and all other content are licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US">Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License</a></p>
+
+    
+  </div>
+</div>
+</body>
+</html>
+

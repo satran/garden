@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Satran&#39;s Digital Garden</title>
+    <link rel="shortcut icon" href="/favicon.png" />
+    <link rel="stylesheet" href="/base.css"/>
+  </head>
+  <body>
+    <nav class="main">
+      <li class="site-title"><a href="/">Satran&#39;s Digital Garden</a></li>
+      <li><a href="/Blog">Blog</a></li><li><a href="/Tags">Tags</a></li><li><a href="/Books">Books</a></li><li><a href="https://twitter.com/sat_ran">Twitter</a></li>
+    </nav>
+
+<div class="wrapper">
+  <article>
+    <section class="content">
+      
+      <h1 class="title">My thoughts on Go - completeness it provides through simplicity</h1>
+      
+      <p>I have been programming in Go for a few weeks now and these are my thoughts on it.</p>
+<p>Though the designers keep emphasising that it is quite different, it reminds me of C in many ways.  It is simple and succinct. The whole language specification fits in a <a href="http://golang.org/ref/spec">single page html</a> - that says something. I felt comfortable learning the language. It was a stark contrast to what happened when I decide to re-learn C++. I say re-learn as many years ago I was taught using Turbo C++. I must say it was quite a challenge: finding the right book to start off with and having to deal with numerous ways just to initialise an object. A quick summary of the language was provided in <a href="http://tour.golang.org/#1">A Tour of Go</a> and <a href="http://golang.org/doc/effective_go.html">Effective Go</a> to help me get the idiomatic way to start coding. Some say it takes <a href="http://norvig.com/21-days.html">ten years to learn programming</a> and with a language that does not lend itself to doing the same thing in many ways I am sure in that time I would have achieved something.</p>
+<p>I know that there will be lesser arguments of the right style to write a function in Go with the language designers deciding to provide <code>gofmt</code>. That ends the discussion of GNU style vs the Linux kernel style. The tools that surround the language are fantastic. With documentation support built in I can happily kick off RST and sphinx (even though there will be folks arguing of its features) out into the closet. Though I cannot call it a test suite but <code>go test</code> just works. All these tools including race detector, package installation, profiling and benchmarks are tools that help you concentrate on building your application. Tools that <strong>just work</strong>.</p>
+<p>I feel packages and namespaces are done right. Attributes, functions, variables that start with an uppercase letter are exposed publicly. All others are private. Names are simple and should be accessed using the package name. Thus creating a new Tree structure from the tree package is just <code>tree.New</code>. Writing packages are also simple. Files start with defining what package they belong to. While creating complex programs very long files can be easily broken down into several files using the same package. Each file can define multiple <code>init</code> functions to initialise the package.<code>init</code> is called after all the variable declarations in the package have evaluated their initialisers, and those are evaluated only after all the imported packages have been initialised. Which makes init quite powerful.</p>
+<p>I believe anyone who has been following Go would agree that it solves most problems of concurrency. Again here it does is with utmost ease with goroutines: call a function concurrently with just <code>go &lt;function_name&gt;</code>. Rob Pike gave a wonderful presentation about <a href="http://www.youtube.com/watch?v=f6kdp27TYZs">concurrency</a>. Being one of the designers he does more justice in explaining concurrency.</p>
+<p>The standard library is quite sufficient. With the focus on web technologies in the past few years the <code>http</code> and <code>template</code> packages come in standard. Handling JSON, connecting with databases, basic 2d image manipulation, to name a few, are provided right in the standard library. With UTF-8 built right into the language handling unicode is much simpler.</p>
+<p>There are many other features that I feel are worth looking at:</p>
+<ul>
+<li>error handling (yes I do like the error handling. I just can't count the numerous time I have seen <code>raise</code> being called in Python code without any custom exception, or even built-in exceptions. It is better to handle exceptions right where the call is made.)</li>
+<li>interface declaration - no explicit declaration that my custom type is an interface, define the methods and it satisfies the interface.</li>
+<li>channels (I am not talking too much about concurrency and channels as many have done enough justice about them.)</li>
+<li>slices</li>
+<li><code>select</code>ing channels and types</li>
+<li>multiple return values</li>
+</ul>
+<p>More than beauty and theoretical soundness Go went for practicality. The face that <code>range</code> acts differently for different types just shows that. Having an empty select to construct complex if statements is another example. The fact that they chose to go with practicality will pay off. Even though many are complaining now I believe the language will stand time.</p>
+<p>What ever the designers say not having generics is a bit of a pain. I'm writing more code. I do like the duck-typing I get through interfaces. But at times I just want a better option to <code>interface{}</code>. I do lose the advantages of static typing. That being said I would advice my fellow programmers who lament about the fact that there is no generics and have a huge blog post on why Go sucks etc., not to jump into it. Deal with it right in the beginning. You are not going to get generics for a while. Period. Either quit complaining about the lack of features or use another which suits your needs.</p>
+<p>So far I have enjoyed programming in Go. The simplicity made me even adopt Acme as my default editor. As with Acme from the outside people frown at the minimalism but fail to see the completeness it provides with simplicity.</p>
+
+    </section>
+
+    
+    <section class="side">
+      <div class="meta">
+	
+	<p class="date">Created on May 11 2014</p>
+	
+	
+	<ul class="tags">
+	  
+	  <li><a href="/Blog">Blog</a></li>
+	  
+	</ul>
+	
+      </div>
+      
+
+    </section>
+    
+  </article>
+</div>
+
+<div class="footer">
+  <div class="about">
+    <nav>
+      <li><a href="/Blog">Blog</a></li><li><a href="/Tags">Tags</a></li><li><a href="/Books">Books</a></li><li><a href="https://twitter.com/sat_ran">Twitter</a></li>
+    </nav>
+    
+    <div><p>Hi, I'm Satyajit Ranjeev. I'm an Engineering Leader at Solarisbank.
+I'm <a href="https://twitter.com/sat_ran">@sat_ran</a> on Twitter. Follow me for more such content.</p>
+</div>
+    
+  </div>
+  <div class="license">
+    
+    <p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png"></a><br><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">The website's theme, articles, images and all other content are licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US">Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License</a></p>
+
+    
+  </div>
+</div>
+</body>
+</html>
+

@@ -1,0 +1,100 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Satran&#39;s Digital Garden</title>
+    <link rel="shortcut icon" href="/favicon.png" />
+    <link rel="stylesheet" href="/base.css"/>
+  </head>
+  <body>
+    <nav class="main">
+      <li class="site-title"><a href="/">Satran&#39;s Digital Garden</a></li>
+      <li><a href="/Blog">Blog</a></li><li><a href="/Tags">Tags</a></li><li><a href="/Books">Books</a></li><li><a href="https://twitter.com/sat_ran">Twitter</a></li>
+    </nav>
+
+<div class="wrapper">
+  <article>
+    <section class="content">
+      
+      <h1 class="title">My short bout with Emacs and why I chose to stick with Vim</h1>
+      
+      <p>This is not to kindle the flame wars of Emacs and Vim. This is just my experience with Emacs.</p>
+<p>Ever since I came across Linux and UNIX I had been told about two great editors: Emacs and vi(I'm going to use vi for Vim throughout the article.) Toying around Linux I came across vi more frequently. Many articles had me typing commands in bash like</p>
+<pre><code>vi /etc/sysconfig/network-scripts/ifcfg-eth0
+</code></pre>
+<p>I had to press <code>i</code> to start typing and then <code>Esc</code> and a <code>:wq</code> to save and quit! From the Windows' world of notepad it all seemed weird in the beginning. But it now seems to be the right way to edit files (I even have my zsh configured with vi bindings.) I have been using vi for more than 6 years now, and in the past few years became a lot more productive with it. I have my configurations hosted on <a href="https://github.com/satyajitranjeev/Dotvim">git</a> so I can easily clone my setup in various machines. I have my favourite <a href="https://github.com/satyajitranjeev/Dotvim/tree/master/bundle">plugins</a> and key bindings to make editing very comfortable. Why, I have even written my own plugin. So why did I want to try Emacs?</p>
+<p>My experience with creating a plugin for vi had me toying around with
+<span>VimScript<sup><label for="mn-1" class="margin-toggle">1</label></sup></span>
+<input type="checkbox" id="mn-1" class="margin-toggle"/>
+<span class="marginnote">1. Eventually I wrote the plugin with Python </span>. Looking on the &quot;greener&quot; Emacs side I saw Lisp. I had just started learning Lisp and the idea of tweaking Emacs with Lisp drew me to Emacs like a wasp to a flame.</p>
+<p>The &quot;greener&quot; side:</p>
+<ul>
+<li>Emacs uses Lisp (rather elisp)</li>
+<li>Some times modal editing could get uncomfortable (which I will explain later)</li>
+<li>Executing programs with C-c C-c</li>
+<li>M-x shell</li>
+<li>M-x python-shell</li>
+<li>I wanted something new to toy around with</li>
+</ul>
+<p>With these benefits I dug into Emacs. I personalized it: got my key bindings, plugins, color-theme (boy did I have a tough time getting this one work) and a few init.el customizations. I tried my best not to use vi.</p>
+<p>I loved the fact I could use C-c C-c and test my Python programs right away. With the pony-mode for Django projects I could run the server with a few keystrokes and run <code>manage.py</code> commands too. And moving into a shell was as simple as M-x shell and typing a few commands. One annoying thing with vi was that I had to leave home position to reach for the arrow keys or go to command mode to move one character to the right or left in the insert mode. C-f was just brilliant. Dired, scratch buffer, debugger, to name a few were the good things.</p>
+<p>But as I constantly edited I stumbled across things I missed in vi:</p>
+<ul>
+<li>A plugin, <a href="https://github.com/wincent/Command-T">Command-T</a>, very similar to that of Textmate's find in project was something I missed the most. Even though dired was good finding files using the Command-T plugin was extremely convenient. I tried to find similar plugins in Emacs but nothing was close enough.</li>
+<li><code>df(</code> moves the character to the first <code>(</code> in the line. I just could not find an alternative for this in Emacs. <code>M-z (</code> deletes till the first <code>(</code> but does not with navigation.</li>
+<li>Jumping to a line is just <code>Esc:20</code>.</li>
+<li>Repeating commands just needs a prefix of the number unlike <code>C-x &lt;number&gt; &lt;other-commands&gt;</code>.</li>
+<li>Starting vi is extremely fast, Emacs took 7 seconds longer. And in the terminal vi is just blazing fast.</li>
+<li>Using rope for python takes more time to jump to a definition in Emacs.</li>
+<li>Even though M-x shell sounded cool I just could not get the completion work for M-x shell or ipython work. And I realized I am breaking away from the UNIX principle of grouping small programs to do tasks. I can always <code>Ctrl-z</code> from vi perform tasks in my shell and return with <code>fg</code>.</li>
+</ul>
+<p>I believe the main reason was I had started to grok vi and any other thing seemed alien. Had I started with Emacs before vi I probably would have titled this &quot;my short bout with vi and why I chose to stick with Emacs&quot;. Emacs is a great piece of software and kudos to all the great hackers using it.</p>
+<p>Just a screenshot.
+<img src="/emacs.png" alt="Screenshot Emacs" title="Just a screenshot."></p>
+
+    </section>
+
+    
+    <section class="side">
+      <div class="meta">
+	
+	<p class="date">Created on Jun 8 2012</p>
+	
+	
+	<ul class="tags">
+	  
+	  <li><a href="/Blog">Blog</a></li>
+	  
+	</ul>
+	
+      </div>
+      
+
+    </section>
+    
+  </article>
+</div>
+
+<div class="footer">
+  <div class="about">
+    <nav>
+      <li><a href="/Blog">Blog</a></li><li><a href="/Tags">Tags</a></li><li><a href="/Books">Books</a></li><li><a href="https://twitter.com/sat_ran">Twitter</a></li>
+    </nav>
+    
+    <div><p>Hi, I'm Satyajit Ranjeev. I'm an Engineering Leader at Solarisbank.
+I'm <a href="https://twitter.com/sat_ran">@sat_ran</a> on Twitter. Follow me for more such content.</p>
+</div>
+    
+  </div>
+  <div class="license">
+    
+    <p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png"></a><br><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">The website's theme, articles, images and all other content are licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US">Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License</a></p>
+
+    
+  </div>
+</div>
+</body>
+</html>
+
